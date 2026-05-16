@@ -1,10 +1,9 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("hello world", () => {
-  const code = detectLang("console.log(\"Hello world!\");");
-  assert.equal(code.language, "Javascript");
+  const code = detectLang('console.log("Hello world!");');
+  expect(code.language).toEqual("Javascript");
 });
 
 test("fizz buzz", () => {
@@ -16,7 +15,7 @@ test("fizz buzz", () => {
       }),
   );
   `);
-  assert.equal(code.language, "Javascript");
+  expect(code.language).toEqual("Javascript");
 });
 
 test("quick sort", () => {
@@ -59,7 +58,7 @@ test("quick sort", () => {
    
     return array;
   }`);
-  assert.equal(code.language, "Javascript");
+  expect(code.language).toEqual("Javascript");
 });
 
 test("bubble sort", () => {
@@ -76,7 +75,7 @@ test("bubble sort", () => {
     }
     return this;
   }`);
-  assert.equal(code.language, "Javascript");
+  expect(code.language).toEqual("Javascript");
 });
 
 test("heap sort", () => {
@@ -120,7 +119,7 @@ test("heap sort", () => {
       heapSort(arr)
       expect(arr).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
   })`);
-  assert.equal(code.language, "Javascript");
+  expect(code.language).toEqual("Javascript");
 });
 
 test("http server", () => {
@@ -143,7 +142,7 @@ test("http server", () => {
   }).on("error", (err) => {
     console.log("Error: " + err.message);
   });`);
-  assert.equal(code.language, "Javascript");
+  expect(code.language).toEqual("Javascript");
 });
 
 test("ludic numbers", () => {
@@ -212,7 +211,7 @@ test("ludic numbers", () => {
      console.log([e, e + 2, e + 6].join(', '));
    }
  });`);
-  assert.equal(code.language, "Javascript");
+  expect(code.language).toEqual("Javascript");
 });
 
 test("gamma function", () => {
@@ -236,7 +235,7 @@ test("gamma function", () => {
  
     return Math.sqrt(2 * Math.PI) * Math.pow(t, x + 0.5) * Math.exp(-t) * a;
 }`);
-  assert.equal(code.language, "Javascript");
+  expect(code.language).toEqual("Javascript");
 });
 
 test("fivenum", () => {
@@ -269,12 +268,12 @@ test("fivenum", () => {
            0.63905160,  0.61501527, -0.98983780, -1.00447874, -0.62759469,
            0.66206163,  1.04312009, -0.10305385,  0.75775634,  0.32566578];
   console.log( test.fiveNums() );`);
-  assert.equal(code.language, "Javascript");
+  expect(code.language).toEqual("Javascript");
 });
 
 test("arrow function", () => {
   const code = detectLang("(argument => {");
-  assert.equal(code.language, "Javascript");
+  expect(code.language).toEqual("Javascript");
 });
 
 test("Svelte", () => {
@@ -296,7 +295,5 @@ test("Svelte", () => {
 			window.removeEventListener('sveltekit:navigation-end', onNavigationEnd)
 		}
 	})`);
-  assert.equal(code.language, "Javascript");
+  expect(code.language).toEqual("Javascript");
 });
-
-test.run();

@@ -34,5 +34,5 @@ export const Julia: LanguagePattern[] = [
   { pattern: /\bmodule\(.*\)/, type: "not" },
   // Avoiding Kotlin confusion
   { pattern: /fun main\((.*)?\) {/, type: "not" },
-  { pattern: /fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+){/, type: "not" }
+  { pattern: /fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+){/, type: "not" },
 ];

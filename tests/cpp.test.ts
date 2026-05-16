@@ -1,14 +1,13 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("hello world", () => {
-  const code = detectLang("cout << \"Hello world\" << endl;", {
+  const code = detectLang('cout << "Hello world" << endl;', {
     shiki: true,
-    heuristic: true
+    heuristic: true,
   });
-  assert.equal(code.language, "cpp");
-  assert.equal(code.statistics, {
+  expect(code.language).toEqual("cpp");
+  expect(code.statistics).toEqual({
     C: 0,
     Clojure: 0,
     "C++": 5,
@@ -34,9 +33,9 @@ test("hello world", () => {
     SQL: 0,
     Unknown: 1,
     YAML: 0,
-    Typescript: 0
+    Typescript: 0,
   });
-  assert.equal(code.linesOfCode, 1);
+  expect(code.linesOfCode).toEqual(1);
 });
 
 test("fizz buzz", () => {
@@ -81,7 +80,7 @@ test("fizz buzz", () => {
    FizzBuzz<100> p;
    return 0;
  }`);
-  assert.equal(code.language, "C++");
+  expect(code.language).toEqual("C++");
 });
 
 test("quick sort", () => {
@@ -179,7 +178,7 @@ test("quick sort", () => {
   {
     quicksort(first, last, std::less<typename std::iterator_traits<RandomAccessIterator>::value_type>());
   }`);
-  assert.equal(code.language, "C++");
+  expect(code.language).toEqual("C++");
 });
 
 test("bubble sort", () => {
@@ -207,7 +206,7 @@ test("bubble sort", () => {
     copy(std::begin(a), std::end(a), std::ostream_iterator<int>(std::cout, " "));
     std::cout << "\n";
   }`);
-  assert.equal(code.language, "C++");
+  expect(code.language).toEqual("C++");
 });
 
 test("heap sort", () => {
@@ -227,7 +226,7 @@ test("heap sort", () => {
     copy(std::begin(a), std::end(a), std::ostream_iterator<int>(std::cout, " "));
     std::cout << "\n";
   }`);
-  assert.equal(code.language, "C++");
+  expect(code.language).toEqual("C++");
 });
 
 // FIXME: This detected as C.
@@ -270,7 +269,7 @@ test.skip("http server", () => {
 
     return 0;
   }`);
-  assert.equal(code.language, "C++");
+  expect(code.language).toEqual("C++");
 });
 
 test("floyd warshall algorithm", () => {
@@ -348,7 +347,7 @@ test("floyd warshall algorithm", () => {
     std::cin.get();
     return 0;
   }`);
-  assert.equal(code.language, "C++");
+  expect(code.language).toEqual("C++");
 });
 
 test("ludic numbers", () => {
@@ -433,7 +432,7 @@ test("ludic numbers", () => {
       cout << "\n\n";
       return system( "pause" );
   }`);
-  assert.equal(code.language, "C++");
+  expect(code.language).toEqual("C++");
 });
 
 test("happy numbers", () => {
@@ -473,7 +472,7 @@ test("happy numbers", () => {
         std::cout << i << std::endl;
     return 0;
   }`);
-  assert.equal(code.language, "C++");
+  expect(code.language).toEqual("C++");
 });
 
 test("gamma function", () => {
@@ -536,7 +535,7 @@ test("gamma function", () => {
       }
   }
    `);
-  assert.equal(code.language, "C++");
+  expect(code.language).toEqual("C++");
 });
 
 test("fivenum", () => {
@@ -619,7 +618,7 @@ test("fivenum", () => {
 
       return 0;
   }`);
-  assert.equal(code.language, "C++");
+  expect(code.language).toEqual("C++");
 });
 
 test("y combinator", () => {
@@ -666,7 +665,5 @@ test("y combinator", () => {
     std::cout << "fac(10) = " << fac(10) << std::endl;
     return 0;
   }`);
-  assert.equal(code.language, "C++");
+  expect(code.language).toEqual("C++");
 });
-
-test.run();

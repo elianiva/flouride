@@ -24,5 +24,5 @@ export const Rust: LanguagePattern[] = [
   { pattern: /using\sSystem/, type: "not" },
   { pattern: /Console\.WriteLine\s*\(/, type: "not" },
   { pattern: /(public\s)?((partial|static)\s)?class\s/, type: "not" },
-  { pattern: /(function|func)\s/, type: "not" }
+  { pattern: /(function|func)\s/, type: "not" },
 ];

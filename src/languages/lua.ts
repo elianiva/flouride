@@ -8,14 +8,17 @@ export const Lua: LanguagePattern[] = [
   // function definition
   { pattern: /(local\s)?function\s*([a-zA-Z0-9_]*)?\(\)/, type: "keyword.function" },
   // for loop
-  { pattern: /for\s+([a-zA-Z]+)\s*=\s*([a-zA-Z0-9_]+),\s*([a-zA-Z0-9_]+)\s+do/, type: "keyword.control" },
+  {
+    pattern: /for\s+([a-zA-Z]+)\s*=\s*([a-zA-Z0-9_]+),\s*([a-zA-Z0-9_]+)\s+do/,
+    type: "keyword.control",
+  },
   // while loop
   { pattern: /while\s(.*)\sdo/, type: "keyword.control" },
   // keywords
   {
     pattern:
       /\s+(and|break|do|else|elseif|end|false|function|if|in|not|or|local|repeat|return|then|true|until|pairs|ipairs|in|yield)/,
-    type: "keyword.other"
+    type: "keyword.other",
   },
   { pattern: /nil/, type: "constant.null" },
   // length operator
@@ -31,7 +34,7 @@ export const Lua: LanguagePattern[] = [
   // map-like table
   {
     pattern: /{\s*([^\s;,=]+\s*=\s*[^\s;,=]+)(\s*[;,=]\s*[^\s;,=]+\s*=\s*[^\s;,=]+)*\s*,?\s*}/,
-    type: "constant.dictionary"
+    type: "constant.dictionary",
   },
   // builtin math methods
   { pattern: /math\.(.*)\([0-9]*\)/, type: "macro" },
@@ -65,5 +68,5 @@ export const Lua: LanguagePattern[] = [
   { pattern: /(puts)/, type: "not" },
   { pattern: /\bmodule\s\S/, type: "not" },
   // avoid confusion Julia
-  { pattern: /(([a-zA-Z0-9]+)::([a-zA-Z0-9]+)|using|(.*)!\(.*\)|(\|\|))/, type: "not" }
+  { pattern: /(([a-zA-Z0-9]+)::([a-zA-Z0-9]+)|using|(.*)!\(.*\)|(\|\|))/, type: "not" },
 ];

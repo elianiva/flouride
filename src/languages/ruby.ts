@@ -31,5 +31,5 @@ export const Ruby: LanguagePattern[] = [
   // nil keyword
   { pattern: /nil/, type: "constant.null" },
   // Scope operator
-  { pattern: /[A-Z]\w*::[A-Z]\w*/, type: "macro" }
+  { pattern: /[A-Z]\w*::[A-Z]\w*/, type: "macro" },
 ];

@@ -31,5 +31,5 @@ export const Python: LanguagePattern[] = [
   // Avoiding Kotlin confusion
   { pattern: /fun main\((.*)?\) {/, type: "not" },
   { pattern: /(inline(\s+))?fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+)({|=)/, type: "not" },
-  { pattern: /(const)?(\s+)?val(\s+)(.*)(:(\s)(.*)(\?)?)?(\s+)=(\s+)/, type: "not" }
+  { pattern: /(const)?(\s+)?val(\s+)(.*)(:(\s)(.*)(\?)?)?(\s+)=(\s+)/, type: "not" },
 ];

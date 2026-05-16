@@ -1,5 +1,4 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("hello world", () => {
@@ -8,7 +7,7 @@ test("hello world", () => {
   begin
     writeln(StdErr, 'Goodbye, World!');
   end.`);
-  assert.equal(code.language, "Pascal");
+  expect(code.language).toEqual("Pascal");
 });
 
 test("fizz buzz", () => {
@@ -26,7 +25,7 @@ test("fizz buzz", () => {
       else
         writeln(i);
   end.`);
-  assert.equal(code.language, "Pascal");
+  expect(code.language).toEqual("Pascal");
 });
 
 test("guess the number", () => {
@@ -50,7 +49,7 @@ test("guess the number", () => {
     writeln ('You made an excellent guess. Thank you and have a nice day.');
   end.
    `);
-  assert.equal(code.language, "Pascal");
+  expect(code.language).toEqual("Pascal");
 });
 
 test("bubble sort", () => {
@@ -69,7 +68,7 @@ test("bubble sort", () => {
           list[j + 1] := t;
         end;
   end;`);
-  assert.equal(code.language, "Pascal");
+  expect(code.language).toEqual("Pascal");
 });
 
 test("heap sort", () => {
@@ -150,7 +149,7 @@ test("heap sort", () => {
     end;
     writeln;
   end.`);
-  assert.equal(code.language, "Pascal");
+  expect(code.language).toEqual("Pascal");
 });
 
 test("merge sort", () => {
@@ -242,7 +241,7 @@ test("merge sort", () => {
     end;
     writeln;
   end.`);
-  assert.equal(code.language, "Pascal");
+  expect(code.language).toEqual("Pascal");
 });
 
 test("quick sort", () => {
@@ -269,7 +268,7 @@ test("quick sort", () => {
     If Left<j Then QuickSort(Left,j);
     If i<Right Then QuickSort(i,Right);
   End;`);
-  assert.equal(code.language, "Pascal");
+  expect(code.language).toEqual("Pascal");
 });
 
 test("palindrome", () => {
@@ -296,7 +295,7 @@ test("palindrome", () => {
      else
         is_palindro := false
   end;`);
-  assert.equal(code.language, "Pascal");
+  expect(code.language).toEqual("Pascal");
 });
 
 test("happy numbers", () => {
@@ -361,7 +360,7 @@ test("happy numbers", () => {
     end;
     writeln;
   end.`);
-  assert.equal(code.language, "Pascal");
+  expect(code.language).toEqual("Pascal");
 });
 
 test("ludic numbers", () => {
@@ -509,7 +508,7 @@ test("ludic numbers", () => {
     LastLucid(LudicList,maxLudicCnt,5);
     triples(LudicList,250);//all-> (LudicList,LudicList[High(LudicList)].dNum);
   END.`);
-  assert.equal(code.language, "Pascal");
+  expect(code.language).toEqual("Pascal");
 });
 
 test("attractive number", () => {
@@ -723,7 +722,5 @@ test("attractive number", () => {
     writeln('time counting : ',T*86400 :8:3,' s');
     writeln('time total    : ',(now-T0)*86400 :8:3,' s');
   end.`);
-  assert.equal(code.language, "Pascal");
+  expect(code.language).toEqual("Pascal");
 });
-
-test.run();
