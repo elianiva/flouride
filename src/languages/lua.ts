@@ -17,10 +17,10 @@ export const Lua: LanguagePattern[] = [
   // keywords
   {
     pattern:
-      /\s+(and|break|do|else|elseif|end|false|function|if|in|not|or|local|repeat|return|then|true|until|pairs|ipairs|in|yield)/,
+      /\s+(and|break|do|else|elseif|end|false|for|function|if|in|not|or|local|repeat|return|then|true|until|while|pairs|ipairs|yield)/,
     type: "keyword.other",
   },
-  { pattern: /nil/, type: "constant.null" },
+  { pattern: /\bnil\b/, type: "constant.null" },
   // length operator
   { pattern: /#([a-zA-Z_{}]+)/, type: "keyword.operator" },
   // metatables
@@ -63,10 +63,10 @@ export const Lua: LanguagePattern[] = [
   // avoid confusion with Python
   { pattern: /(def|len|from|import)/, type: "not" },
   // avoid confusion with SQL
-  { pattern: /(SELECT|FROM|INSERT|ALTER)/, type: "not" },
+  { pattern: /\b(SELECT|FROM|INSERT|ALTER|WHERE)\b/, type: "not" },
   // avoid confusion with Ruby
   { pattern: /(puts)/, type: "not" },
   { pattern: /\bmodule\s\S/, type: "not" },
   // avoid confusion Julia
-  { pattern: /(([a-zA-Z0-9]+)::([a-zA-Z0-9]+)|using|(.*)!\(.*\)|(\|\|))/, type: "not" },
+  { pattern: /(([a-zA-Z0-9]+)::([a-zA-Z0-9]+)|using|.*!\(.*\)|\|\|)/, type: "not" },
 ];

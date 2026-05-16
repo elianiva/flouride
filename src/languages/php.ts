@@ -18,7 +18,7 @@ export const PHP: LanguagePattern[] = [
   // new keyword
   { pattern: /new\s+((\\\w+)+|\w+)(\(.*\))?/, type: "keyword" },
   // Function definition
-  { pattern: /function(\s+[$\w]+\(.*\)|\s*\(.*\))/g, type: "keyword.control" },
+  { pattern: /function\s+(&\s*)?([A-Za-z_$][\w$]*)\s*\(/g, type: "keyword.function" },
   // (else)if statement
   { pattern: /(else)?if\s+\(.+\)/, type: "keyword.control" },
   // scope operator

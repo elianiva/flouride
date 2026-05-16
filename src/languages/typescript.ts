@@ -11,36 +11,36 @@ export const Typescript: LanguagePattern[] = [
   },
   {
     pattern: /:\s*\w+\s*</,
-    type: "keyword.control",
+    type: "keyword.other",
   },
   {
-    pattern: /\??:\s*(any|string|boolean|undefined|null|number|void|never|symbol|bigint)\s*/,
+    pattern: /\??:\s*(any|string|boolean|undefined|null|number|void|never|symbol|bigint|object|unknown)\s*/,
     type: "constant.type",
   },
   {
     pattern:
-      /(let|const|var)*\s*\w*:\s*(any|string|boolean|undefined|null|number|void|never|symbol|bigint)\s*=/,
+      /(let|const|var)*\s*\w*:\s*(any|string|boolean|undefined|null|number|void|never|symbol|bigint|object|unknown)\s*=/,
     type: "constant.type",
   },
   { pattern: /console\.log\s*\(/, type: "keyword.print" },
   {
-    pattern: /interface\s*(\w+)\s*{/,
+    pattern: /interface\s+\w+\s*\{/,
     type: "constant.type",
   },
   {
-    pattern: /enum\s*\w+\s*=/,
+    pattern: /enum\s+\w+\s*\{/,
     type: "constant.type",
   },
   {
-    pattern: /type\s*(\w+)\s*=/,
+    pattern: /type\s+(\w+)\s*=/,
     type: "constant.type",
   },
   {
-    pattern: /function\s+\w+\(.*\):\s\w+\s*{/,
+    pattern: /function\s+\w+\(.*\)\s*:\s*\w+\s*{/,
     type: "keyword.function",
   },
   {
-    pattern: /\(.*\):\s\w+\s*=>\s*{/,
+    pattern: /\(.*\)\s*:\s*\w+\s*=>\s*{/,
     type: "keyword.function",
   },
   {

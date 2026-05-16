@@ -18,17 +18,17 @@ export const Javascript: LanguagePattern[] = [
   // Function definition
   { pattern: /function\*?\s*([A-Za-z$_][\w$]*)?\s*[(][^:;()]*[)]\s*{/g, type: "keyword.function" },
   // arrow function
-  { pattern: /\(* => {/g, type: "keyword.function" },
-  // null keyword
-  { pattern: /null/g, type: "constant.null" },
-  // lambda expression
-  { pattern: /\(.*\)\s*=>\s*.+/, type: "keyword.control" },
+  { pattern: /\([^)]*\)\s*=>\s*[{]/g, type: "keyword.function" },
+  // arrow function without parens or single param wrapped in parens
+  { pattern: /(?:\(\w+|\w+)\s*=>\s*[{]/g, type: "keyword.function" },
+  // null/true/false keywords
+  { pattern: /\b(?:null|true|false)\b/g, type: "constant.null" },
   // (else )if statement
   { pattern: /(else )?if\s+\(.+\)/, type: "keyword.control" },
   // while loop
   { pattern: /while\s+\(.+\)/, type: "keyword.control" },
   // C style variable declaration.
-  { pattern: /(^|\s)(char|long|int|float|double)\s+\w+\s*=?/, type: "not" },
+  { pattern: /(^|\s)(char|long|int|float|double|short|unsigned|signed|void|size_t)\s+\w+\s*=?/, type: "not" },
   // pointer
   { pattern: /\*\w+/, type: "not" },
   // HTML <script> tag

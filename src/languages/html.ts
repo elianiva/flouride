@@ -2,12 +2,12 @@ import type { LanguagePattern } from "../types";
 
 export const HTML: LanguagePattern[] = [
   { pattern: /<!DOCTYPE (html|HTML PUBLIC .+)>/, type: "meta.module", nearTop: true },
-  // Tags
-  { pattern: /<[a-z0-9]+(\s*[\w]+=('|").+('|")\s*)?>.*<\/[a-z0-9]+>/g, type: "keyword" },
+  // Tags - matches <tagname> and </tagname>
+  { pattern: /<\/?[a-zA-Z][a-zA-Z0-9]*(\s+[a-zA-Z-]+=("|')[^"']*("|'))*\s*\/?>/, type: "keyword" },
   // Comments
   { pattern: /<!--(.*)(-->)?/, type: "comment.block" },
   // Properties
-  { pattern: /[a-z-]+=("|').+("|')/g, type: "keyword.other" },
+  { pattern: /[a-zA-Z-]+=("|')[^"']*("|')/g, type: "keyword.other" },
   // PHP tag
   { pattern: /<\?php/, type: "not" },
 ];
