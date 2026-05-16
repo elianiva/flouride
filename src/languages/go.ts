@@ -26,5 +26,5 @@ export const Go: LanguagePattern[] = [
   // Avoiding C# confusion
   { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: "not" },
   { pattern: /using\sSystem(\..*)?(;)?/, type: "not" },
-  { pattern: /(public|private|protected|internal)\s/, type: "not" }
+  { pattern: /(public|private|protected|internal)\s/, type: "not" },
 ];

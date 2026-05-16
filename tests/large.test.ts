@@ -1,5 +1,4 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src";
 
 test("large input", () => {
@@ -654,10 +653,10 @@ test("large input", () => {
 
       return ARGON2_OK;
   }`,
-    { heuristic: true }
+    { heuristic: true },
   );
-  assert.equal(code.language, "C++");
-  assert.equal(code.statistics, {
+  expect(code.language).toEqual("C++");
+  expect(code.statistics).toEqual({
     C: 71,
     Clojure: 0,
     "C++": 146,
@@ -683,9 +682,7 @@ test("large input", () => {
     SQL: 22,
     Unknown: 1,
     YAML: 4,
-    Typescript: 2
+    Typescript: 2,
   });
-  assert.equal(code.linesOfCode, 299);
+  expect(code.linesOfCode).toEqual(299);
 });
-
-test.run();

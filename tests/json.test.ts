@@ -1,5 +1,4 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("1", () => {
@@ -42,15 +41,11 @@ test("1", () => {
   , "another comment": "how nice"
   },
 
-
-
   "whitespace": "Does not matter.",
-
-
 
   "that was short": "And done. You now know everything JSON has to offer."
 }`);
-  assert.equal(code.language, "JSON");
+  expect(code.language).toEqual("JSON");
 });
 
 test("2", () => {
@@ -66,7 +61,7 @@ test("2", () => {
         "+44 2345678"
     ]
 }`);
-  assert.equal(code.language, "JSON");
+  expect(code.language).toEqual("JSON");
 });
 
 test("3", () => {
@@ -88,7 +83,7 @@ test("3", () => {
     "sandbox"
   ]
 }`);
-  assert.equal(code.language, "JSON");
+  expect(code.language).toEqual("JSON");
 });
 
 test("4", () => {
@@ -97,7 +92,7 @@ test("4", () => {
     "/blog/:resource/:id/show": "/:resource/:id",
     "/blog/:category": "/posts?category=:category"
   }`);
-  assert.equal(code.language, "JSON");
+  expect(code.language).toEqual("JSON");
 });
 
 test("5", () => {
@@ -110,14 +105,12 @@ test("5", () => {
     ],
     "profile": { "name": "typicode" }
   }`);
-  assert.equal(code.language, "JSON");
+  expect(code.language).toEqual("JSON");
 });
 
 test("6", () => {
   const code = detectLang(`{
     "middlewares": ["./fixtures/middlewares/en", "./fixtures/middlewares/jp"]
   }`);
-  assert.equal(code.language, "JSON");
+  expect(code.language).toEqual("JSON");
 });
-
-test.run();

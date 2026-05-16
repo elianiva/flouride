@@ -21,5 +21,5 @@ export const YAML: LanguagePattern[] = [
   { pattern: /^( )*<<:( )(\*)(.*)?$/, type: "constant.type" },
   // Avoiding confusion with CSS
   { pattern: /^( )*([A-Za-z0-9_. ]+):(.*)?( )?{$/, type: "not" },
-  { pattern: /^( )*([A-Za-z0-9_. ]+):(.*)?( )?,$/, type: "not" }
+  { pattern: /^( )*([A-Za-z0-9_. ]+):(.*)?( )?,$/, type: "not" },
 ];

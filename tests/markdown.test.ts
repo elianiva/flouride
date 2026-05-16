@@ -1,71 +1,72 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("heading 2", () => {
   const code = detectLang("## Heading level 2");
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("heading 3", () => {
   const code = detectLang("### Heading level 3");
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("heading 4", () => {
   const code = detectLang("#### Heading level 4");
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("heading 5", () => {
   const code = detectLang("##### Heading level 5");
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("heading 6", () => {
   const code = detectLang("###### Heading level 6");
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("heading 1 alternate syntax", () => {
   const code = detectLang("Heading level 1\n============");
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("heading 2 alternate syntax", () => {
   const code = detectLang("Heading level 1\n------------");
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("images", () => {
   const code = detectLang("![GitHub Logo](/images/logo.png)");
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("links", () => {
   const code = detectLang("[GitHub](http://github.com)");
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("links 2", () => {
   const code = detectLang("[GitHub][http://github.com]");
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("links 3", () => {
   const code = detectLang("[1]: https://en.wikipedia.org/wiki/Hobbit#Lifestyle");
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("links 4", () => {
-  const code = detectLang("[1]: <https://en.wikipedia.org/wiki/Hobbit#Lifestyle> \"Hobbit lifestyles\"");
-  assert.equal(code.language, "Markdown");
+  const code = detectLang(
+    '[1]: <https://en.wikipedia.org/wiki/Hobbit#Lifestyle> "Hobbit lifestyles"',
+  );
+  expect(code.language).toEqual("Markdown");
 });
 
 test("blockquotes", () => {
   const code = detectLang(`> We're living the future so
   > the present is our past.`);
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("example 1", () => {
@@ -76,7 +77,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-
 ## [12.2.0] - 2021-08-02
 ### Added
 - Ordered lists: add order value to token info.
@@ -84,28 +84,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Always suffix indented code block with a newline, #799.
 
-
 ## [12.1.0] - 2021-07-01
 ### Changed
 - Updated CM spec compatibility to 0.30.
 
-
 ## [12.0.6] - 2021-04-16
 ### Fixed
 - Newline in \`alt\` should be rendered, #775.
-
 
 ## [12.0.5] - 2021-04-15
 ### Fixed
 - HTML block tags with \`===\` inside are no longer incorrectly interpreted as headers, #772.
 - Fix table/list parsing ambiguity, #767.
 
-
 ## [12.0.4] - 2020-12-20
 ### Fixed
 - Fix crash introduced in \`12.0.3\` when processing strikethrough (\`~~\`) and similar plugins, #742.
 - Avoid fenced token mutation, #745.
-
 
 ## [12.0.3] - 2020-12-07
 ### Fixed
@@ -117,16 +112,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Allow newline in \`<? ... ?>\` in an inline context.
 - Allow \`<meta>\` html tag to appear in an inline context.
 
-
 ## [12.0.2] - 2020-10-23
 ### Fixed
 - Three pipes (\`|\n|\n|\`) are no longer rendered as a table with no columns, #724.
 
-
 ## [12.0.1] - 2020-10-19
 ### Fixed
 - Fix tables inside lists indented with tabs, #721.
-
 
 ## [12.0.0] - 2020-10-14
 ### Added
@@ -154,7 +146,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [12.0.2]: https://github.com/markdown-it/markdown-it/compare/12.0.1...12.0.2
 [12.0.1]: https://github.com/markdown-it/markdown-it/compare/12.0.0...12.0.1
 [12.0.0]: https://github.com/markdown-it/markdown-it/compare/11.0.1...12.0.0`);
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("example 2", () => {
@@ -223,7 +215,7 @@ So, why do I use Linux then? Well, let me give you a quick list of why Linux is 
 At first, I'm afraid that I can't install Windows on my new laptop. Who would've thought that in the end, I use Archlinux which some people say that it's difficult to install. I think it's not that hard, follow the wiki and you're set (said someone who had failed to install Archlinux 3 times lmao).
 
 Alright, this post will end right here. I might post why I use VIM/Window Managers next time. See ya in the next post everyone, have a good day!`);
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("example 3", () => {
@@ -386,7 +378,7 @@ To translate the web in English and Spanish I use [nuxt-i18n](https://github.com
 I thought about publishing a starter about it but being realist, I wouldn't have enough time to maintain it. I think this post explains how to do it very well, but if you have any doubt left, you can always contact me at my email: [marina@marinaaisa](mailto:marina@marinaaisa.com).
 
 Since I don't have a comments section on each post, I would love to continue the conversation on [Twitter](https://twitter.com/MarinaAisa). All feedback is welcome! If you think there is something that it can be improved, you would help me a lot.`);
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
 
 test("example 4", () => {
@@ -465,7 +457,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 Copyright (c) Microsoft Corporation. All rights reserved.
 
 Licensed under the [MIT](LICENSE.txt) license.`);
-  assert.equal(code.language, "Markdown");
+  expect(code.language).toEqual("Markdown");
 });
-
-test.run();

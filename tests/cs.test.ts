@@ -1,15 +1,14 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src";
 
 test("hello world", () => {
   const code = detectLang(
     `using System;
   Console.WriteLine("Hello world!");`,
-    { shiki: true, heuristic: true }
+    { shiki: true, heuristic: true },
   );
-  assert.equal(code.language, "csharp");
-  assert.equal(code.statistics, {
+  expect(code.language).toEqual("csharp");
+  expect(code.statistics).toEqual({
     C: -39,
     Clojure: 0,
     "C++": -40,
@@ -35,9 +34,9 @@ test("hello world", () => {
     SQL: 0,
     Unknown: 1,
     YAML: 0,
-    Typescript: 0
+    Typescript: 0,
   });
-  assert.equal(code.linesOfCode, 2);
+  expect(code.linesOfCode).toEqual(2);
 });
 
 test("fizz buzz", () => {
@@ -74,7 +73,7 @@ test("fizz buzz", () => {
           }
       }
   }`);
-  assert.equal(code.language, "C#");
+  expect(code.language).toEqual("C#");
 });
 
 test("quick sort", () => {
@@ -254,7 +253,7 @@ test("quick sort", () => {
     }
     #endregion
   }`);
-  assert.equal(code.language, "C#");
+  expect(code.language).toEqual("C#");
 });
 
 test("heap sort", () => {
@@ -334,7 +333,7 @@ test("heap sort", () => {
           HeapSort(s, 0, s.Length, StringComparer.CurrentCultureIgnoreCase);
       }
   }`);
-  assert.equal(code.language, "C#");
+  expect(code.language).toEqual("C#");
 });
 
 test("bubble sort", () => {
@@ -382,7 +381,7 @@ test("bubble sort", () => {
           }
       }
   }`);
-  assert.equal(code.language, "C#");
+  expect(code.language).toEqual("C#");
 });
 
 test("merge sort", () => {
@@ -511,7 +510,7 @@ test("merge sort", () => {
     }
     #endregion
   }`);
-  assert.equal(code.language, "C#");
+  expect(code.language).toEqual("C#");
 });
 
 test("fibonacci sequence", () => {
@@ -530,7 +529,7 @@ test("fibonacci sequence", () => {
       return fibs;
   }
  `);
-  assert.equal(code.language, "C#");
+  expect(code.language).toEqual("C#");
 });
 
 test("happy numbers", () => {
@@ -583,7 +582,7 @@ test("happy numbers", () => {
           }
       }
   }`);
-  assert.equal(code.language, "C#");
+  expect(code.language).toEqual("C#");
 });
 
 test("gamma function", () => {
@@ -615,7 +614,7 @@ test("gamma function", () => {
     }
   }
    `);
-  assert.equal(code.language, "C#");
+  expect(code.language).toEqual("C#");
 });
 
 test("fivenum", () => {
@@ -683,7 +682,7 @@ test("fivenum", () => {
           }
       }
   }`);
-  assert.equal(code.language, "C#");
+  expect(code.language).toEqual("C#");
 });
 
 test("y combinator", () => {
@@ -710,7 +709,7 @@ test("y combinator", () => {
       }
   }
    `);
-  assert.equal(code.language, "C#");
+  expect(code.language).toEqual("C#");
 });
 
 test("quick sort example with java conflict", () => {
@@ -763,7 +762,5 @@ test("quick sort example with java conflict", () => {
           }
       }
   }`);
-  assert.equal(code.language, "C#");
+  expect(code.language).toEqual("C#");
 });
-
-test.run();

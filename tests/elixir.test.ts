@@ -1,10 +1,9 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src";
 
 test("hello world", () => {
-  const code = detectLang("IO.puts :stderr, \"Goodbye, World!\"");
-  assert.equal(code.language, "Elixir");
+  const code = detectLang('IO.puts :stderr, "Goodbye, World!"');
+  expect(code.language).toEqual("Elixir");
 });
 
 test("fizz buzz", () => {
@@ -16,7 +15,7 @@ test("fizz buzz", () => {
 end
  
 Enum.each(1..100, &IO.puts FizzBuzz.fizzbuzz &1)`);
-  assert.equal(code.language, "Elixir");
+  expect(code.language).toEqual("Elixir");
 });
 
 test("anagrams", () => {
@@ -36,7 +35,7 @@ test("anagrams", () => {
 end
  
 Anagrams.find("unixdict.txt")`);
-  assert.equal(code.language, "Elixir");
+  expect(code.language).toEqual("Elixir");
 });
 
 test("bubble sort", () => {
@@ -51,7 +50,7 @@ test("bubble sort", () => {
   def bsort_iter([x, y | t]), do: [x | bsort_iter([y | t])]
   def bsort_iter(list), do: list
 end`);
-  assert.equal(code.language, "Elixir");
+  expect(code.language).toEqual("Elixir");
 });
 
 test("heap sort", () => {
@@ -92,7 +91,7 @@ test("heap sort", () => {
 end
  
 (for _ <- 1..20, do: :rand.uniform(20)) |> IO.inspect |> Sort.heapSort |> IO.inspect`);
-  assert.equal(code.language, "Elixir");
+  expect(code.language).toEqual("Elixir");
 });
 
 test("merge sort", () => {
@@ -103,7 +102,7 @@ test("merge sort", () => {
     :lists.merge( merge_sort(left), merge_sort(right))
   end
 end`);
-  assert.equal(code.language, "Elixir");
+  expect(code.language).toEqual("Elixir");
 });
 
 test("quick sort", () => {
@@ -114,7 +113,7 @@ test("quick sort", () => {
     qsort(lesser) ++ [h] ++ qsort(greater)
   end
 end`);
-  assert.equal(code.language, "Elixir");
+  expect(code.language).toEqual("Elixir");
 });
 
 test("ludic numbers", () => {
@@ -141,7 +140,7 @@ test("ludic numbers", () => {
 end
  
 Ludic.task`);
-  assert.equal(code.language, "Elixir");
+  expect(code.language).toEqual("Elixir");
 });
 
 test("happy numbers", () => {
@@ -172,7 +171,7 @@ test("happy numbers", () => {
 end
  
 IO.inspect Happy.task(8)`);
-  assert.equal(code.language, "Elixir");
+  expect(code.language).toEqual("Elixir");
 });
 
 test("floyd warshall", () => {
@@ -220,7 +219,5 @@ end
  
 edge = [{1, 3, -2}, {2, 1, 4}, {2, 3, 3}, {3, 4, 2}, {4, 2, -1}]
 Floyd_Warshall.main(4, edge)`);
-  assert.equal(code.language, "Elixir");
+  expect(code.language).toEqual("Elixir");
 });
-
-test.run();

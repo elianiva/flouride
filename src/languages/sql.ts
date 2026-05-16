@@ -16,12 +16,15 @@ export const SQL: LanguagePattern[] = [
   { pattern: /--\s\w/, type: "comment.line" },
   // Data types
   { pattern: /(VARCHAR|CHAR|BINARY|VARBINARY|BLOB|TEXT)\([0-9]+\)/, type: "constant.type" },
-  { pattern: /(BIT|TINYINT|SMALLINT|MEDIUMINT|INT|INTEGER|BIGINT|DOUBLE)\([0-9]+\)/, type: "constant.type" },
+  {
+    pattern: /(BIT|TINYINT|SMALLINT|MEDIUMINT|INT|INTEGER|BIGINT|DOUBLE)\([0-9]+\)/,
+    type: "constant.type",
+  },
   { pattern: /(TINYBLOB|TINYTEXT|MEDIUMTEXT|MEDIUMBLOB|LONGTEXT|LONGBLOB)/, type: "constant.type" },
   { pattern: /(BOOLEAN|BOOL|DATE|YEAR)/, type: "constant.type" },
   // Math
   { pattern: /(EXP|SUM|SQRT|MIN|MAX)/, type: "keyword.operator" },
   // Avoiding Lua
   { pattern: /local\s(function|\w+)?\s=\s/, type: "not" },
-  { pattern: /(require|dofile)\((.*)\)/, type: "not" }
+  { pattern: /(require|dofile)\((.*)\)/, type: "not" },
 ];

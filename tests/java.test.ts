@@ -1,10 +1,9 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("hello world", () => {
-  const code = detectLang("System.out.println(\"Hello world!\");");
-  assert.equal(code.language, "Java");
+  const code = detectLang('System.out.println("Hello world!");');
+  expect(code.language).toEqual("Java");
 });
 
 test("fizz buzz", () => {
@@ -21,21 +20,22 @@ test("fizz buzz", () => {
       System.out.println();
     }
   }`);
-  assert.equal(code.language, "Java");
+  expect(code.language).toEqual("Java");
 });
 
 test("getter/setter", () => {
   const code = detectLang("Person person = people.get(0);");
-  assert.equal(code.language, "Java");
+  expect(code.language).toEqual("Java");
 });
 
 test("List/ArrayList", () => {
   const code = detectLang("List<String> things = new ArrayList<>();");
-  assert.equal(code.language, "Java");
+  expect(code.language).toEqual("Java");
 });
 
 test("quick sort", () => {
-  const code = detectLang(`public static <E extends Comparable<? super E>> List<E> quickSort(List<E> arr) {
+  const code =
+    detectLang(`public static <E extends Comparable<? super E>> List<E> quickSort(List<E> arr) {
     if (arr.isEmpty())
         return arr;
     else {
@@ -66,11 +66,12 @@ test("quick sort", () => {
     }
   }
   `);
-  assert.equal(code.language, "Java");
+  expect(code.language).toEqual("Java");
 });
 
 test("bubble sort", () => {
-  const code = detectLang(`public static <E extends Comparable<? super E>> void bubbleSort(E[] comparable) {
+  const code =
+    detectLang(`public static <E extends Comparable<? super E>> void bubbleSort(E[] comparable) {
     boolean changed = false;
     do {
         changed = false;
@@ -84,7 +85,7 @@ test("bubble sort", () => {
         }
     } while (changed);
   }`);
-  assert.equal(code.language, "Java");
+  expect(code.language).toEqual("Java");
 });
 
 test("http server", () => {
@@ -107,7 +108,7 @@ test("http server", () => {
                   .join();
       }
   }`);
-  assert.equal(code.language, "Java");
+  expect(code.language).toEqual("Java");
 });
 
 test("floyd warshall algorithm", () => {
@@ -169,7 +170,7 @@ test("floyd warshall algorithm", () => {
           }
       }
   }`);
-  assert.equal(code.language, "Java");
+  expect(code.language).toEqual("Java");
 });
 
 test("ludic numbers", () => {
@@ -218,7 +219,7 @@ test("ludic numbers", () => {
       System.out.println("Triplets up to 250: " + getTriplets(ludicUpTo(250)));
     }
   }`);
-  assert.equal(code.language, "Java");
+  expect(code.language).toEqual("Java");
 });
 
 test("fivenum", () => {
@@ -264,7 +265,5 @@ test("fivenum", () => {
           for (double[] x : xl) System.out.printf("%s\n\n", Arrays.toString(fivenum(x)));
       }
   }`);
-  assert.equal(code.language, "Java");
+  expect(code.language).toEqual("Java");
 });
-
-test.run();

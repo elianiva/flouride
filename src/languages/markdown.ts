@@ -16,5 +16,5 @@ export const Markdown: LanguagePattern[] = [
   // code block
   { pattern: /^```([A-Za-z0-9#_]+)?$/, type: "keyword" },
   // frontmatter
-  { pattern: /^---$/, type: "meta.module", nearTop: true }
+  { pattern: /^---$/, type: "meta.module", nearTop: true },
 ];
