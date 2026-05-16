@@ -10,10 +10,15 @@ export const JSON: LanguagePattern[] = [
   // inline key/value pair in object
   // e.g { "id": 1, "body": "some comment", "postId": 1 }
   {
-    pattern: /^\s*"[^"\\]*(?:\\.[^"\\]*)*":\s*\{\s*"[^"\\]*(?:\\.[^"\\]*)*":\s*("[^"\\]*(?:\\.[^"\\]*)*"|[0-9]+|null|true|false)(?:\s*,\s*"[^"\\]*(?:\\.[^"\\]*)*":\s*("[^"\\]*(?:\\.[^"\\]*)*"|[0-9]+|null|true|false))*\s*\}(,)?$/,
+    pattern:
+      /^\s*"[^"\\]*(?:\\.[^"\\]*)*":\s*\{\s*"[^"\\]*(?:\\.[^"\\]*)*":\s*("[^"\\]*(?:\\.[^"\\]*)*"|[0-9]+|null|true|false)(?:\s*,\s*"[^"\\]*(?:\\.[^"\\]*)*":\s*("[^"\\]*(?:\\.[^"\\]*)*"|[0-9]+|null|true|false))*\s*\}(,)?$/,
     type: "keyword",
   },
   // inline value in array
   // e.g "middlewares": ["./fixtures/middlewares/en", "./fixtures/middlewares/jp"]
-  { pattern: /\s*"[^"]+"\s*\[\s*("[^"]+"|[0-9]+|null|true|false)(\s*,\s*("[^"]+"|[0-9]+|null|true|false))*\s*\](,)?$/, type: "keyword" },
+  {
+    pattern:
+      /\s*"[^"]+"\s*\[\s*("[^"]+"|[0-9]+|null|true|false)(\s*,\s*("[^"]+"|[0-9]+|null|true|false))*\s*\](,)?$/,
+    type: "keyword",
+  },
 ];
