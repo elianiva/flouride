@@ -1,9 +1,9 @@
-# Flourite - Language detector
+# Flouride - Language detector
 
-[![npm](https://img.shields.io/npm/v/flourite?style=for-the-badge)](https://www.npmjs.com/package/flourite)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/flourite?style=for-the-badge)](https://www.npmjs.com/package/flourite)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/teknologi-umum/flourite/ci.yml?branch=master&style=for-the-badge)](https://github.com/teknologi-umum/flourite/actions/workflows/ci.yml)
-[![Codecov](https://img.shields.io/codecov/c/gh/teknologi-umum/flourite?style=for-the-badge)](https://app.codecov.io/gh/teknologi-umum/flourite)
+[![npm](https://img.shields.io/npm/v/flouride?style=for-the-badge)](https://www.npmjs.com/package/flouride)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/flouride?style=for-the-badge)](https://www.npmjs.com/package/flouride)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/elianiva/flouride/ci.yml?branch=master&style=for-the-badge)](https://github.com/elianiva/flouride/actions/workflows/ci.yml)
+[![Codecov](https://img.shields.io/codecov/c/gh/elianiva/flouride?style=for-the-badge)](https://app.codecov.io/gh/elianiva/flouride)
 
 A fork of [ts95/lang-detector](https://github.com/ts95/lang-detector), rewritten in Typescript with more language support.
 
@@ -27,22 +27,15 @@ Detects a programming language from a given string.
 ## Install
 
 ```bash
-$ npm install flourite
-```
-
-or via a CDN (unpkg or jsdelivr)
-
-```html
-<script src="https://unpkg.com/flourite@1.3.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/flourite@1.3.0/dist/index.iife.js"></script>
+$ pnpm add @elianiva/flouride
 ```
 
 ## Usage
 
 ```js
-import flourite from "flourite";
+import flouride from "@elianiva/flouride";
 
-const code = flourite('cout << "Hello world" << endl;');
+const code = flouride('cout << "Hello world" << endl;');
 
 // {
 //   language: 'C++',
@@ -78,29 +71,29 @@ const code = flourite('cout << "Hello world" << endl;');
 Or if you want to integrate it with [Shiki](https://github.com/shikijs/shiki), you could pass:
 
 ```js
-flourite('Console.WriteLine("Hello world!");', { shiki: true }).language;
+flouride('Console.WriteLine("Hello world!");', { shiki: true }).language;
 // => csharp
-flourite("fn partition<T,F>(v: &mut [T], f: &F) -> usize ", { shiki: true }).language;
+flouride("fn partition<T,F>(v: &mut [T], f: &F) -> usize ", { shiki: true }).language;
 // => rust
 ```
 
 If you want to handle `Unknown` value, you could pass:
 
 ```js
-const code = flourite("SELECT 'Hello world!' text FROM dual;", { noUnknown: true });
+const code = flouride("SELECT 'Hello world!' text FROM dual;", { noUnknown: true });
 ```
 
 ### With Typescript
 
 ```typescript
-import flourite from "flourite";
-import type { Options } from "flourite";
+import flouride from "flouride";
+import type { Options } from "flouride";
 
-const flouriteOptions: Options = {
+const flourideOptions: Options = {
   heuristic: true,
 };
 
-const code = flourite("print!({:?}, &v);", flouriteOptions);
+const code = flouride("print!({:?}, &v);", flourideOptions);
 ```
 
 ### Available Options
@@ -110,28 +103,6 @@ const code = flourite("print!({:?}, &v);", flouriteOptions);
 | heuristic | `boolean` | `true`  | Checks for codes on the top of the given input. Only checks when the lines of code is above 500. |
 | shiki     | `boolean` | `false` | Straightforward compatibility with Shiki's language specification type                           |
 | noUnknown | `boolean` | `false` | If `true`, will not output `Unknown` on detected and statistics result                           |
-
-## I'm here for Hacktoberfest, what can I do?
-
-If you're new to open source, we really recommend reading a few articles about contributing to open source projects:
-
-- [Open Source Guide's How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
-- [Hacktoberfest Contributor's Guide: How To Find and Contribute to Open-Source Projects](https://www.digitalocean.com/community/tutorials/hacktoberfest-contributor-s-guide-how-to-find-and-contribute-to-open-source-projects)
-- [Tips for high-quality Pull Request](https://twitter.com/sudo_navendu/status/1437456596473303042)
-
-Then you can start by reading our [contribution](https://github.com/teknologi-umum/flourite#i-want-to-contribute-what-can-i-do) part and guidelines.
-
-Two things that you can do for sure: Create a new language support and improve the regular expression performance on current supported languages.
-
-Have fun!
-
-## Contributing
-
-- Use the Node.js version as defined on the `.nvmrc` file.
-- Run `npm run test:tdd` to initiate a test driven development environment.
-- Run `npx vp check` to format, lint, and type-check before commit a change.
-
-For more details and explanation on how things work, see [CONTRIBUTING](./CONTRIBUTING.md)
 
 ## License
 

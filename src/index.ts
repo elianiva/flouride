@@ -63,12 +63,12 @@ const languages: Record<string, LanguagePattern[]> = {
  * @returns {DetectedLanguage} An object of DetectedLanguage
  * @example
  * ```js
- * import flourite from 'flourite';
- * const detect = flourite(code);
+ * import flouride from '@elianiva/flouride';
+ * const detect = flouride(code);
  * ```
- * @see Supported Languages - https://github.com/teknologi-umum/flourite#detectable-languages
+ * @see Supported Languages - https://github.com/elianiva/flouride#detectable-languages
  */
-function flourite(
+function flouride(
   snippet: string,
   options: Options = { heuristic: true, shiki: false, noUnknown: false },
 ): DetectedLanguage {
@@ -155,4 +155,4 @@ function flourite(
 }
 
 export type { Options, DetectedLanguage };
-export default flourite;
+export default flouride;

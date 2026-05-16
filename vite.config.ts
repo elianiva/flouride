@@ -9,7 +9,7 @@ export default defineConfig({
       iife: { minify: true },
       umd: { minify: true },
     },
-    globalName: "flourite",
+    globalName: "flouride",
     dts: true,
     clean: true,
     target: "es2015",
