@@ -8,13 +8,23 @@ const curl = readFileSync(new URL("./curl", import.meta.url), "utf-8");
 const gin = readFileSync(new URL("./gin", import.meta.url), "utf-8");
 
 describe("curl library", () => {
-  bench("detect language", () => {
-    detectLang(curl);
-  });
+  bench(
+    "detect language",
+    () => {
+      detectLang(curl);
+    },
+    { iterations: 500 },
+  );
 });
 
 describe("go gin", () => {
-  bench("detect language", () => {
-    detectLang(gin);
-  });
+  bench(
+    "detect language",
+    () => {
+      detectLang(gin);
+    },
+    {
+      iterations: 500,
+    },
+  );
 });
