@@ -2,7 +2,10 @@ import type { LanguagePattern } from "../types";
 
 export const Rust: LanguagePattern[] = [
   { pattern: /fn\s+main\(\)/, type: "keyword.function" },
-  { pattern: /(pub\s+)?fn\s+[A-Za-z0-9_<>',]+\s*\([^)]*\)\s*(->\s*\w+(?:<[^>]+>)?)?\s*\{?/, type: "keyword.visibility" },
+  {
+    pattern: /(pub\s+)?fn\s+[A-Za-z0-9_<>',]+\s*\([^)]*\)\s*(->\s*\w+(?:<[^>]+>)?)?\s*\{?/,
+    type: "keyword.visibility",
+  },
   { pattern: /let\s+(mut\s+)?\w+\s*([=:].*)?$/, type: "keyword.variable" },
   { pattern: /\w+!\([^)]*\)/, type: "macro" },
   { pattern: /use\s+\w+(::\w+)*(\s+as\s+\w+)?\s*;/, type: "meta.import" },

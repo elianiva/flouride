@@ -2,7 +2,7 @@ import type { LanguagePattern } from "../types";
 
 export const Ruby: LanguagePattern[] = [
   // require/include
-  { pattern: /^\s*(require|include)\s+['"][\w\/\-]+['"]/, type: "meta.import", nearTop: true },
+  { pattern: /^\s*(require|include)\s+['"][\w/\-]+['"]/, type: "meta.import", nearTop: true },
   // Function definition
   { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, type: "keyword.function" },
   // Instance variables

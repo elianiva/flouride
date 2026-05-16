@@ -14,7 +14,8 @@ export const Typescript: LanguagePattern[] = [
     type: "keyword.other",
   },
   {
-    pattern: /\??:\s*(any|string|boolean|undefined|null|number|void|never|symbol|bigint|object|unknown)\s*/,
+    pattern:
+      /\??:\s*(any|string|boolean|undefined|null|number|void|never|symbol|bigint|object|unknown)\s*/,
     type: "constant.type",
   },
   {

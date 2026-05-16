@@ -16,7 +16,7 @@ export const Go: LanguagePattern[] = [
   // if/else if
   { pattern: /(}\s*else\s*)?if\s+.+{/, type: "keyword.control" },
   // var/const declaration
-  { pattern: /(var|const)\s+\w+(\s+[\w*\[\]]+)?(\n|\s*=|$)/, type: "keyword.variable" },
+  { pattern: /(var|const)\s+\w+(\s+[\w*[\]]+)?(\n|\s*=|$)/, type: "keyword.variable" },
   // public access on package
   { pattern: /[a-z]+\.[A-Z]\w*/, type: "macro" },
   // nil keyword

@@ -28,7 +28,10 @@ export const Javascript: LanguagePattern[] = [
   // while loop
   { pattern: /while\s+\(.+\)/, type: "keyword.control" },
   // C style variable declaration.
-  { pattern: /(^|\s)(char|long|int|float|double|short|unsigned|signed|void|size_t)\s+\w+\s*=?/, type: "not" },
+  {
+    pattern: /(^|\s)(char|long|int|float|double|short|unsigned|signed|void|size_t)\s+\w+\s*=?/,
+    type: "not",
+  },
   // pointer
   { pattern: /\*\w+/, type: "not" },
   // HTML <script> tag

@@ -26,5 +26,5 @@ const KEYWORDS = [
 export const Dockerfile: LanguagePattern[] = [
   // Keywords
   // This should be enough to identify dockerfile since they always exist
-  { pattern: new RegExp(`^(${KEYWORDS.join("|")})`, 'i'), type: "keyword" },
+  { pattern: new RegExp(`^(${KEYWORDS.join("|")})`, "i"), type: "keyword" },
 ];

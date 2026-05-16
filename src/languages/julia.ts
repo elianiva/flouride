@@ -25,7 +25,7 @@ export const Julia: LanguagePattern[] = [
   { pattern: /(::)?(Int|Uint)(8|16|32|64|128)/, type: "keyword.variable" },
   { pattern: /[0-9]+im/, type: "keyword" },
   // Avoiding Rust confusion
-  { pattern: /\{\:\?\}/, type: "not" },
+  { pattern: /\{:\?\}/, type: "not" },
   { pattern: /fn\s+main\(\)/, type: "not" },
   // Avoiding Ruby confusion
   { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, type: "not" },

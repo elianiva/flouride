@@ -2,7 +2,10 @@ import type { LanguagePattern } from "../types";
 
 export const C: LanguagePattern[] = [
   // Primitive variable declaration.
-  { pattern: /\b(char|long|int|float|double|short|unsigned|signed|size_t)\s+\w+\s*=?/, type: "constant.type" },
+  {
+    pattern: /\b(char|long|int|float|double|short|unsigned|signed|size_t)\s+\w+\s*=?/,
+    type: "constant.type",
+  },
   // malloc function call
   { pattern: /malloc\(.+\)/, type: "keyword.function" },
   // #include <whatever.h>

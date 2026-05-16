@@ -18,7 +18,10 @@ export const Python: LanguagePattern[] = [
   // for loop
   { pattern: /for (\w+|\(?\w+,\s*\w+\)?) in (.+):/, type: "keyword.control" },
   // Python variable declaration (simple assignment).
-  { pattern: /^\s*[a-z_]\w*\s*=\s*(\d+(\.\d+)?|'[^']*'|"[^"]*"|\w+)\s*$/, type: "keyword.variable" },
+  {
+    pattern: /^\s*[a-z_]\w*\s*=\s*(\d+(\.\d+)?|'[^']*'|"[^"]*"|\w+)\s*$/,
+    type: "keyword.variable",
+  },
   // import something (Python-style: lowercase module names, no semicolon)
   { pattern: /^import\s+[a-z_]\w*(?:\.\w+)*$/, type: "meta.import", nearTop: true },
   // print statement/function
