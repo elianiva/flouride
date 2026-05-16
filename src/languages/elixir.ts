@@ -19,8 +19,6 @@ export const Elixir: LanguagePattern[] = [
   { pattern: /^\s*@spec\s+.+::.+/, type: "macro" },
   // Lists
   { pattern: /\{:.+,.+\}/, type: "constant.array" },
-  // Maps
-  { pattern: /%\{\s*[^,\s{}:=>][^,{}]*(?:=>|:)\s*[^,{}][^,{}]*(?:\s*,\s*[^,\s{}:=>][^,{}]*(?:=>|:)\s*[^,{}][^,{}]*)*\s*\}/, type: "constant.dictionary" },
   // Avoid JS confusion
   { pattern: /\b(let|const|var)\s+/, type: "not" },
   { pattern: /\bfunction\s+/, type: "not" },

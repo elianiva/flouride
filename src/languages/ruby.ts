@@ -32,4 +32,6 @@ export const Ruby: LanguagePattern[] = [
   { pattern: /\bnil\b/, type: "constant.null" },
   // Scope operator
   { pattern: /[A-Z]\w*::[A-Z]\w*/, type: "macro" },
+  // Plain class declaration (no inheritance)
+  { pattern: /^class\s+[A-Z]\w+\s*$/, type: "keyword" },
 ];
