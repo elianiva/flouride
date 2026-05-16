@@ -20,7 +20,7 @@ export const Elixir: LanguagePattern[] = [
   // Lists
   { pattern: /\{:.+,.+\}/, type: "constant.array" },
   // Maps
-  { pattern: /%\{(.+(=>|:).+(,)?){1,}\}/, type: "constant.dictionary" },
+  { pattern: /%\{\s*[^,\s{}:=>][^,{}]*(?:=>|:)\s*[^,{}][^,{}]*(?:\s*,\s*[^,\s{}:=>][^,{}]*(?:=>|:)\s*[^,{}][^,{}]*)*\s*\}/, type: "constant.dictionary" },
   // Avoid JS confusion
   { pattern: /\b(let|const|var)\s+/, type: "not" },
   { pattern: /\bfunction\s+/, type: "not" },
