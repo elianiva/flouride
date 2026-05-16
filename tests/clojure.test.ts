@@ -1,11 +1,10 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("hello world", () => {
   const code = detectLang(`(binding [*out* *err*]
     (println "Goodbye, world!"))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("guess the number", () => {
@@ -19,14 +18,14 @@ test("guess the number", () => {
         (do
          (println "Try again")
          (recur (inc n))))))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("fizz buzz", () => {
   const code = detectLang(
-    "(doseq [x (range 1 101)] (println x (str (when (zero? (mod x 3)) \"fizz\") (when (zero? (mod x 5)) \"buzz\"))))"
+    '(doseq [x (range 1 101)] (println x (str (when (zero? (mod x 3)) "fizz") (when (zero? (mod x 5)) "buzz"))))',
   );
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("bubble sort", () => {
@@ -57,7 +56,7 @@ test("bubble sort", () => {
      (recur less? result)))))
    
   (println (bubble-sort [10 9 8 7 6 5 4 3 2 1]))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("heap sort", () => {
@@ -88,7 +87,7 @@ test("heap sort", () => {
        (heapify pred a len)))
     ([a]
        (heap-sort a <)))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("merge sort", () => {
@@ -105,7 +104,7 @@ test("merge sort", () => {
       list
       (let [[left right] (split-at (/ (count list) 2) list)]
         (merge (merge-sort left) (merge-sort right)))))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("quick sort", () => {
@@ -115,7 +114,7 @@ test("quick sort", () => {
         (lazy-cat (qsort (filter smaller xs))
       [pivot]
       (qsort (remove smaller xs))))))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("is string numeric?", () => {
@@ -126,7 +125,7 @@ test("is string numeric?", () => {
             s (if (= (first s) \\.) (next s) s)
             s (drop-while #(Character/isDigit %) s)]
         (empty? s))))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("palindrome", () => {
@@ -135,7 +134,7 @@ test("palindrome", () => {
       (or (>= front back)
           (and (= (.charAt s front) (.charAt s back))
                (recur (inc front) (dec back)))))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("ludic numbers", () => {
@@ -164,7 +163,7 @@ test("ludic numbers", () => {
   (print "Triplets < 250: ")
   (println (filter (partial every? ludic?) 
            (for [i (range 250)] (list i (+ i 2) (+ i 6)))))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("date manipulation", () => {
@@ -179,7 +178,7 @@ test("date manipulation", () => {
     long
     (Date. ,)
     (->> , (.format sdf ,)))))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("perfect shuffle", () => {
@@ -195,7 +194,7 @@ test("perfect shuffle", () => {
         (inc (some identity (map-indexed (fn [i x] (when (predicate x) i)) trials)))))))
    
   (map solve [8 24 52 100 1020 1024 10000])`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("conditional", () => {
@@ -205,7 +204,7 @@ test("conditional", () => {
   (cond
     (= 1 2) :no
     (= 1 1) :yes)`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("currying", () => {
@@ -213,7 +212,7 @@ test("currying", () => {
   (assert (= 
              (plus-a-hundred 1)
              101))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("100 doors", () => {
@@ -230,12 +229,12 @@ test("100 doors", () => {
     (println 
       "Open doors after 100 passes:"
       (apply str (interpose ", " (open-doors)))))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
 
 test("looooop", () => {
-  const code = detectLang("(doseq [s (map #(str %1 %2 %3) \"abc\" \"ABC\" \"123\")])");
-  assert.equal(code.language, "Clojure");
+  const code = detectLang('(doseq [s (map #(str %1 %2 %3) "abc" "ABC" "123")])');
+  expect(code.language).toEqual("Clojure");
 });
 
 test("nested loop", () => {
@@ -256,7 +255,5 @@ test("nested loop", () => {
         (when rs (recur rs)))))
    
   (print-matrix (create-matrix 10 10))`);
-  assert.equal(code.language, "Clojure");
+  expect(code.language).toEqual("Clojure");
 });
-
-test.run();

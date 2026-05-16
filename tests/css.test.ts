@@ -1,10 +1,9 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("hello world", () => {
   const code = detectLang(".hello-world {\n\tfont-size: 100px;\n}");
-  assert.equal(code.language, "CSS");
+  expect(code.language).toEqual("CSS");
 });
 
 test("long", () => {
@@ -24,7 +23,5 @@ test("long", () => {
  abbr[title] {
    border-bottom: 1px dotted;
  }`);
-  assert.equal(code.language, "CSS");
+  expect(code.language).toEqual("CSS");
 });
-
-test.run();

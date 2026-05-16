@@ -49,10 +49,11 @@ export const CPP: LanguagePattern[] = [
   // Avoiding Kotlin confusion
   { pattern: /fun main\((.*)?\) {/, type: "not" },
   {
-    pattern: /(inline|private|public|protected|override|operator(\s+))?fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+)({|=)/,
-    type: "not"
+    pattern:
+      /(inline|private|public|protected|override|operator(\s+))?fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+)({|=)/,
+    type: "not",
   },
   { pattern: /(const)?(\s+)?val(\s+)(.*)(:(\s)(.*)(\?)?)?(\s+)=(\s+)/, type: "not" },
   // Avoiding Dart confusion
-  { pattern: /^(void\s)?main\(\)\s(async\s)?{/, type: "not" }
+  { pattern: /^(void\s)?main\(\)\s(async\s)?{/, type: "not" },
 ];

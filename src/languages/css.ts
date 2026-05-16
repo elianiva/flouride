@@ -4,5 +4,5 @@ export const CSS: LanguagePattern[] = [
   // Properties
   { pattern: /[a-z-]+:(?!:).+;/, type: "keyword" },
   // <style> tag from HTML
-  { pattern: /<(\/)?style>/, type: "not" }
+  { pattern: /<(\/)?style>/, type: "not" },
 ];

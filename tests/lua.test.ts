@@ -1,26 +1,25 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("local definition", () => {
   const code = detectLang(
     `local foo = "bar"
     local some_var = 12
-    local table = {1, 2, "foo"} `
+    local table = {1, 2, "foo"} `,
   );
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("array-like tables", () => {
   const code = detectLang("{1212, \"foo\", 'bar', true, false, nil}");
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("map-like tables", () => {
-  const code = detectLang("{foo = \"bar\", [0] = false, [\"true\"] = 1212}");
+  const code = detectLang('{foo = "bar", [0] = false, ["true"] = 1212}');
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("metatable definition", () => {
@@ -30,7 +29,7 @@ test("metatable definition", () => {
     __add = function(x, y) return x + y end
   })`);
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("functiopn call", () => {
@@ -46,7 +45,7 @@ test("functiopn call", () => {
     foo{...}
   `);
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("http", () => {
@@ -55,10 +54,10 @@ test("http", () => {
       local http = require("socket.http")
       local url = require("socket.url")
       local page = http.request('http://www.google.com/m/search?q=' .. url.escape("lua"))
-      print(page)`
+      print(page)`,
   );
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("fizzbuzz", () => {
@@ -73,18 +72,19 @@ test("fizzbuzz", () => {
         else
           print(i)
         end
-      end`
+      end`,
   );
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("fibonacci sequence", () => {
-  const code = detectLang(`--calculates the nth fibonacci number. Breaks for negative or non-integer n.
+  const code =
+    detectLang(`--calculates the nth fibonacci number. Breaks for negative or non-integer n.
   function fibs(n) 
     return n < 2 and n or fibs(n - 1) + fibs(n - 2) 
   end`);
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("quicksort", () => {
@@ -111,7 +111,7 @@ test("quicksort", () => {
   --example
   print(unpack(quicksort{5, 2, 7, 3, 4, 7, 1}))`);
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("floyd warshall", () => {
@@ -181,7 +181,7 @@ test("floyd warshall", () => {
   numVertices = 4
   floydWarshall(weights, numVertices)`);
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("bubble sort", () => {
@@ -206,7 +206,7 @@ test("bubble sort", () => {
       print(j)
   end`);
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("ludic numbers", () => {
@@ -257,7 +257,7 @@ test("ludic numbers", () => {
   show("2000th to 2005th:", inRange)
   show("Triplets:", triplets)`);
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("lsp handler", () => {
@@ -274,9 +274,9 @@ test("lsp handler", () => {
       local matches = util.text_document_completion_list_to_complete_items(result, prefix)
       vim.fn.complete(textMatch+1, matches)
     end
-  `
+  `,
   );
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("yes, this is a valid lua code", () => {
@@ -295,10 +295,10 @@ test("yes, this is a valid lua code", () => {
 [[fooooooo]] {
   ["false"] = true;
   [0] = false;
-}`
+}`,
   );
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("fivenum", () => {
@@ -354,7 +354,7 @@ x1 = {
 for i,x in ipairs(x1) do
   print(fivenum(x))
 end`);
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("modules detection", () => {
@@ -376,7 +376,7 @@ test("modules detection", () => {
      print(a/b)
   end`);
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
 
 test("craete user defined modules", () => {
@@ -389,7 +389,5 @@ test("craete user defined modules", () => {
   require "mymodule"
   mymodule.foo()`);
 
-  assert.equal(code.language, "Lua");
+  expect(code.language).toEqual("Lua");
 });
-
-test.run();

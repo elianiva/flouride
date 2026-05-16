@@ -20,11 +20,11 @@ const KEYWORDS = [
   "STOPSIGNAL",
   "USER",
   "VOLUME",
-  "WORKDIR"
+  "WORKDIR",
 ];
 
 export const Dockerfile: LanguagePattern[] = [
   // Keywords
   // This should be enough to identify dockerfile since they always exist
-  { pattern: new RegExp(`^(${KEYWORDS.join("|")})`), type: "keyword" }
+  { pattern: new RegExp(`^(${KEYWORDS.join("|")})`), type: "keyword" },
 ];

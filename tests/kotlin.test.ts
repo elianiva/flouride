@@ -1,12 +1,11 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src";
 
 test("hello world", () => {
   const code = detectLang(`fun main(args: Array<String>) {
     println("Goodbye, World!")
 }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("fizz buzz", () => {
@@ -38,7 +37,7 @@ test("fizz buzz", () => {
             println(i)
     }
 }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("guess the number", () => {
@@ -50,7 +49,7 @@ test("guess the number", () => {
     do { print(" Your guess : ") } while (n != readLine())
     println("\\nWell guessed!")
   }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("date manipulation", () => {
@@ -71,7 +70,7 @@ test("date manipulation", () => {
       cal.timeZone = TimeZone.getTimeZone("MST")
       println(fmt.format(cal))
   }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("humble numbers", () => {
@@ -115,7 +114,7 @@ fun main() {
         }
     }
 }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("attractive number", () => {
@@ -171,7 +170,7 @@ test("attractive number", () => {
       }
       println()
   }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("bubble sort", () => {
@@ -191,7 +190,7 @@ test("bubble sort", () => {
           }
       } while (changed)
   }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("heap sort", () => {
@@ -241,7 +240,7 @@ fun main(args: Array<String>) {
         println(a.joinToString(", "))
     }
 }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("merge sort", () => {
@@ -295,7 +294,7 @@ fun main(args: Array<String>) {
     println("Unsorted: $numbers")
     println("Sorted: \${mergeSort(numbers)}")
 }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("palindrome", () => {
@@ -328,7 +327,7 @@ test("palindrome", () => {
           println("'$candidate' is \${if (isInexactPalindrome(candidate)) "an" else "not an"} inexact palindrome")
       }
   }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("floyd warshall", () => {
@@ -388,7 +387,7 @@ fun main(args: Array<String>) {
     val nVertices = 4
     FloydWarshall.doCalcs(weights, nVertices)
 }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("most frequent k chair distance", () => {
@@ -444,7 +443,7 @@ fun main(args: Array<String>) {
   s2 = s1.reversed()
   mostFreqKSDF(s1, s2, 2, 100)
 }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("bankers algorithm", () => {
@@ -515,7 +514,7 @@ test("bankers algorithm", () => {
         println("\\nAvailable Vector: \${avl.joinToString(" ")}")
     }
 }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("average loop length", () => {
@@ -557,11 +556,12 @@ test("average loop length", () => {
             println(String.format("%3d   %6.4f   %10.4f      (%4.2f%%)", n, a, b, Math.abs(a - b) / b * 100.0))
         }
     }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("gamma function", () => {
-  const code = detectLang(`fun gammaStirling(x: Double): Double = Math.sqrt(2.0 * Math.PI / x) * Math.pow(x / Math.E, x)
+  const code =
+    detectLang(`fun gammaStirling(x: Double): Double = Math.sqrt(2.0 * Math.PI / x) * Math.pow(x / Math.E, x)
  
     fun gammaLanczos(x: Double): Double {
         var xx = x
@@ -594,7 +594,7 @@ test("gamma function", () => {
             println("%17.15f".format(gammaLanczos(d)))
         }
     }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("number calculation function", () => {
@@ -612,7 +612,7 @@ test("number calculation function", () => {
     
         println("sum = $sum")
     }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("simple while loop implementation", () => {
@@ -625,7 +625,7 @@ test("simple while loop implementation", () => {
                 break;
         }
     }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("largest among 3 numbers programme", () => {
@@ -649,7 +649,7 @@ test("largest among 3 numbers programme", () => {
     
         println("max = $max")
     }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
 
 test("bubble sort function", () => {
@@ -669,7 +669,5 @@ test("bubble sort function", () => {
             }
         } while (changed)
     }`);
-  assert.equal(code.language, "Kotlin");
+  expect(code.language).toEqual("Kotlin");
 });
-
-test.run();

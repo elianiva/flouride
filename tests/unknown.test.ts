@@ -1,17 +1,14 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("should detect Unknown", () => {
-  assert.equal(detectLang("Hello world!").language, "Unknown");
+  expect(detectLang("Hello world!").language).toEqual("Unknown");
 });
 
 test("should detect Unknown", () => {
-  assert.equal(detectLang("ooga booga").language, "Unknown");
+  expect(detectLang("ooga booga").language).toEqual("Unknown");
 });
 
 test("should not gives unknown", () => {
-  assert.equal(detectLang("a very random text", { noUnknown: true }).language, "");
+  expect(detectLang("a very random text", { noUnknown: true }).language).toEqual("");
 });
-
-test.run();

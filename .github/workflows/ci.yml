@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: ['*']
+    branches: ["*"]
   pull_request:
-    branches: ['*']
+    branches: ["*"]
 
 jobs:
   ci:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ 16, 18, 20, 22 ]
+        node: [18, 20, 22, 23]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -25,13 +25,13 @@ jobs:
       - name: Installing dependencies
         run: npm install
 
-      - name: ESLint check
-        run: npx eslint --ignore-path .gitignore .
+      - name: Check formatting, linting, types
+        run: npx vp check
 
       - name: Test & coverage
         run: npm run test
 
-      - name: Build with Rollup
+      - name: Build
         run: npm run build
 
       - name: Send coverage report to Codecov

@@ -9,5 +9,5 @@ export const HTML: LanguagePattern[] = [
   // Properties
   { pattern: /[a-z-]+=("|').+("|')/g, type: "keyword.other" },
   // PHP tag
-  { pattern: /<\?php/, type: "not" }
+  { pattern: /<\?php/, type: "not" },
 ];
