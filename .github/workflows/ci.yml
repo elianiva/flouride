@@ -10,29 +10,34 @@ jobs:
   ci:
     name: CI
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [18, 20, 22, 23]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version-file: .node-version
+          cache: pnpm
 
-      - name: Installing dependencies
-        run: npm install
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Check formatting, linting, types
-        run: npx vp check
+        run: pnpm check
 
       - name: Test & coverage
-        run: npm run test
+        run: pnpm test
 
       - name: Build
-        run: npm run build
+        run: pnpm build
 
       - name: Send coverage report to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/coverage-final.json
+          fail_ci_if_error: false
