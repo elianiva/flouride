@@ -22,11 +22,11 @@ export const CPP: LanguagePattern[] = [
   // #define macro
   { pattern: /#define\s+.+/, type: "macro" },
   // template usage
-  { pattern: /\w+<\w+>/, type: "keyword.other" },
+  { pattern: /\w+<\w+[^>]*>/, type: "keyword.other" },
   // class keyword
   { pattern: /class\s+\w+/, type: "keyword" },
-  // void keyword
-  { pattern: /void/g, type: "keyword" },
+  // void/static/const keywords
+  { pattern: /\b(void|static|const|virtual|explicit|mutable|typename)\b/, type: "keyword" },
   // (else )if statement
   { pattern: /(else )?if\s*\(.+\)/, type: "keyword.control" },
   // while loop

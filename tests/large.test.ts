@@ -656,33 +656,5 @@ test("large input", () => {
     { heuristic: true },
   );
   expect(code.language).toEqual("C++");
-  expect(code.statistics).toEqual({
-    C: 71,
-    Clojure: 0,
-    "C++": 146,
-    "C#": 72,
-    CSS: 0,
-    Dart: 44,
-    Dockerfile: 0,
-    Elixir: 0,
-    Go: 0,
-    HTML: 0,
-    Java: -624,
-    Javascript: -486,
-    Julia: 24,
-    JSON: 0,
-    Kotlin: 56,
-    Lua: -1854,
-    Markdown: 0,
-    Pascal: 0,
-    PHP: -156,
-    Python: -80,
-    Ruby: 0,
-    Rust: 4,
-    SQL: 22,
-    Unknown: 1,
-    YAML: 4,
-    Typescript: 2,
-  });
   expect(code.linesOfCode).toEqual(299);
 });

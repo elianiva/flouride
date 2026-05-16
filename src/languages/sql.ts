@@ -11,9 +11,9 @@ export const SQL: LanguagePattern[] = [
   { pattern: /(END;|COMMIT;)/, type: "keyword" },
 
   { pattern: /UPDATE\s+\w+\sSET/, type: "keyword" },
-  { pattern: /VALUES+(\s+\(\w|\(\w)/, type: "keyword" },
-  // Comments
-  { pattern: /--\s\w/, type: "comment.line" },
+  { pattern: /VALUES\s*\(/, type: "keyword" },
+  // Comments (require space or content after --)
+  { pattern: /^\s*--\s+.*/, type: "comment.line" },
   // Data types
   { pattern: /(VARCHAR|CHAR|BINARY|VARBINARY|BLOB|TEXT)\([0-9]+\)/, type: "constant.type" },
   {

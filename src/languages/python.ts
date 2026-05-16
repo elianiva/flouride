@@ -17,14 +17,14 @@ export const Python: LanguagePattern[] = [
   { pattern: /else:/, type: "keyword.control" },
   // for loop
   { pattern: /for (\w+|\(?\w+,\s*\w+\)?) in (.+):/, type: "keyword.control" },
-  // Python variable declaration.
-  { pattern: /\w+\s*=\s*\w+(?!;)(\n|$)/, type: "keyword" },
-  // import something
-  { pattern: /import ([[^.]\w])+/, type: "meta.import", nearTop: true },
+  // Python variable declaration (simple assignment).
+  { pattern: /^\s*[a-z_]\w*\s*=\s*(\d+(\.\d+)?|'[^']*'|"[^"]*"|\w+)\s*$/, type: "keyword.variable" },
+  // import something (Python-style: lowercase module names, no semicolon)
+  { pattern: /^import\s+[a-z_]\w*(?:\.\w+)*$/, type: "meta.import", nearTop: true },
   // print statement/function
   { pattern: /print((\s*\(.+\))|\s+.+)/, type: "keyword.print" },
-  // &&/|| operators
-  { pattern: /(&{2}|\|{2})/, type: "not" },
+  // &&/||/++/-- operators (not in Python)
+  { pattern: /(&{2}|\|{2}|\+\+|--)/, type: "not" },
   // avoiding lua
   { pattern: /elseif/, type: "not" },
   { pattern: /local\s(function|\w+)?\s=\s/, type: "not" },

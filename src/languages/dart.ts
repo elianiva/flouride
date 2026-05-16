@@ -36,6 +36,9 @@ export const Dart: LanguagePattern[] = [
   { pattern: /^\s*Future<w+>\s\w+\(.+\)\sasync/, type: "keyword.control" },
   { pattern: /^\s*await\sfor/, type: "keyword.control" },
   { pattern: /^\s*typedef\s.+\s=/, type: "keyword.control" },
+  // Recursive type List<num>/List<int> in function signature
+  { pattern: /\b(List|Map|Set|HashMap|Future|Stream)<\w+>/, type: "constant.type" },
+
   // Avoiding confusion with C
   { pattern: /\blong\s/, type: "not" },
   { pattern: /\s*function\b/, type: "not" },
