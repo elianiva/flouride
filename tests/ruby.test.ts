@@ -67,11 +67,11 @@ test.skip("heap sort", () => {
     def heapsort
       self.dup.heapsort!
     end
-  
+
     def heapsort!
       # in pseudo-code, heapify only called once, so inline it here
       ((length - 2) / 2).downto(0) {|start| siftdown(start, length - 1)}
-  
+
       # "end" is a ruby keyword
       (length - 1).downto(1) do |end_|
         self[end_], self[0] = self[0], self[end_]
@@ -79,7 +79,7 @@ test.skip("heap sort", () => {
       end
       self
     end
-  
+
     def siftdown(start, end_)
       root = start
       loop do
@@ -104,7 +104,7 @@ test.skip("heap sort", () => {
 test.skip("http server", () => {
   const code = detectLang(`require 'fileutils'
   require 'open-uri'
-   
+
   open("http://rosettacode.org/") {|f| FileUtils.copy_stream(f, $stdout)}`);
   expect(code.language).toEqual("Ruby");
 });
@@ -117,7 +117,7 @@ test("floyd warshall algorithm", () => {
       dist[u-1][v-1] = w
       nxt[u-1][v-1] = v-1
     end
-  
+
     n.times do |k|
       n.times do |i|
         n.times do |j|
@@ -128,7 +128,7 @@ test("floyd warshall algorithm", () => {
         end
       end
     end
-  
+
     puts "pair     dist    path"
     n.times do |i|
       n.times do |j|
@@ -141,7 +141,7 @@ test("floyd warshall algorithm", () => {
       end
     end
   end
-  
+
   n = 4
   edge = [[1, 3, -2], [2, 1, 4], [2, 3, 3], [3, 4, 2], [4, 2, -1]]
   floyd_warshall(n, edge)`);
@@ -160,13 +160,13 @@ test("ludic numbers", () => {
       end
     end
   end
-  
+
   puts "First 25 Ludic numbers:", ludic.first(25).to_s
-  
+
   puts "Ludics below 1000:", ludic(1000).count
-  
+
   puts "Ludic numbers 2000 to 2005:", ludic.first(2005).last(6).to_s
-  
+
   ludics = ludic(250).to_a
   puts "Ludic triples below 250:",
       ludics.select{|x| ludics.include?(x+2) and ludics.include?(x+6)}.map{|x| [x, x+2, x+6]}.to_s`);
@@ -187,7 +187,7 @@ test("fivenum", () => {
   end
   sum_array
 end
- 
+
 test_array = [15, 6, 42, 41, 7, 36, 49, 40, 39, 47, 43]
 tukey_array = fivenum(test_array)
 p tukey_array
@@ -218,7 +218,7 @@ test("testing BEGIN and END", () => {
   const code = detectLang(`#!/usr/bin/ruby
 
   puts "This is main Ruby Program"
-  
+
   END {
      puts "Terminating Ruby Program"
   }
@@ -233,29 +233,29 @@ test("testing BEGIN and END other test case", () => {
 
   # BEGIN block
   BEGIN {
-  
+
   a = 4
   b = 3
   c = a + b
-      
+
   # BEGIN block code
   puts "This is BEGIN block code"
   puts c
-  
+
   }
-    
+
   # END block
   END {
-  
+
   a = 4
   b = 3
   c = a * b
-      
+
   # END block code
   puts "This is END block code"
   puts c
   }
-    
+
   # Code will execute before END block
   puts "Main Block"
   `);

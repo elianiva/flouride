@@ -176,3 +176,49 @@ const changeTitle = (): void => {
   `);
   expect(code.language).toEqual("Typescript");
 });
+
+test("import type", () => {
+  const code = detectLang(`import type { FC } from "react";
+import { type Ref, type RefObject, useState } from "react";
+
+export type { FC };
+export type Props = {
+  name: string;
+  age?: number;
+};
+  `);
+  expect(code.language).toEqual("Typescript");
+});
+
+test("satisfies and keyof", () => {
+  const code = detectLang(`type Color = "red" | "green" | "blue";
+type ColorMap = { [K in Color]: string } satisfies Record<Color, string>;
+type Keys = keyof ColorMap;
+  `);
+  expect(code.language).toEqual("Typescript");
+});
+
+test("as const and const enum", () => {
+  const code = detectLang(`const COLORS = ["red", "green", "blue"] as const;
+type RGB = (typeof COLORS)[number];
+
+const enum Direction {
+  Up = "UP",
+  Down = "DOWN",
+  Left = "LEFT",
+  Right = "RIGHT",
+}
+
+const dir: Direction = Direction.Up;
+console.log(dir as string);
+  `);
+  expect(code.language).toEqual("Typescript");
+});
+
+test("type predicate", () => {
+  const code = detectLang(`function isString(value: unknown): value is string {
+  return typeof value === "string";
+}
+  `);
+  expect(code.language).toEqual("Typescript");
+});

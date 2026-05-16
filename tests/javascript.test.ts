@@ -3,7 +3,7 @@ import detectLang from "../src/index";
 
 test("hello world", () => {
   const code = detectLang('console.log("Hello world!");');
-  expect(code.language).toEqual("Javascript");
+  expect(code.language).toEqual("Typescript");
 });
 
 test("fizz buzz", () => {
@@ -15,25 +15,25 @@ test("fizz buzz", () => {
       }),
   );
   `);
-  expect(code.language).toEqual("Javascript");
+  expect(code.language).toEqual("Typescript");
 });
 
 test("quick sort", () => {
   const code = detectLang(`function sort(array, less) {
- 
+
     function swap(i, j) {
       var t = array[i];
       array[i] = array[j];
       array[j] = t;
     }
-   
+
     function quicksort(left, right) {
-   
+
       if (left < right) {
         var pivot = array[left + Math.floor((right - left) / 2)],
             left_new = left,
             right_new = right;
-   
+
         do {
           while (less(array[left_new], pivot)) {
             left_new += 1;
@@ -47,15 +47,15 @@ test("quick sort", () => {
             right_new -= 1;
           }
         } while (left_new <= right_new);
-   
+
         quicksort(left, right_new);
         quicksort(left_new, right);
-   
+
       }
     }
-   
+
     quicksort(0, array.length - 1);
-   
+
     return array;
   }`);
   expect(code.language).toEqual("Javascript");
@@ -88,19 +88,19 @@ test("heap sort", () => {
           siftDown(arr, 0, end)
       }
   }
-  
+
   function heapify(arr) {
       let start = Math.floor(arr.length/2) - 1
-  
+
       while (start >= 0) {
           siftDown(arr, start, arr.length - 1)
           start--
       }
   }
-  
+
   function siftDown(arr, startPos, endPos) {
       let rootPos = startPos
-  
+
       while (rootPos * 2 + 1 <= endPos) {
           childPos = rootPos * 2 + 1
           if (childPos + 1 <= endPos && arr[childPos] < arr[childPos + 1]) {
@@ -142,7 +142,7 @@ test("http server", () => {
   }).on("error", (err) => {
     console.log("Error: " + err.message);
   });`);
-  expect(code.language).toEqual("Javascript");
+  expect(code.language).toEqual("Typescript");
 });
 
 test("ludic numbers", () => {
@@ -181,7 +181,7 @@ test("ludic numbers", () => {
   */
  const ludicResult = makeLudic(makeArr(2, 21512), [1]);
   
-  
+ 
  // Below is just logging out the results.
  /**
   * Given a number, return a function that takes an array, and return the
@@ -211,7 +211,7 @@ test("ludic numbers", () => {
      console.log([e, e + 2, e + 6].join(', '));
    }
  });`);
-  expect(code.language).toEqual("Javascript");
+  expect(code.language).toEqual("Typescript");
 });
 
 test("gamma function", () => {
@@ -220,19 +220,19 @@ test("gamma function", () => {
         771.32342877765313, -176.61502916214059, 12.507343278686905,
         -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7
     ];
- 
+
     var g = 7;
     if (x < 0.5) {
         return Math.PI / (Math.sin(Math.PI * x) * gamma(1 - x));
     }
- 
+
     x -= 1;
     var a = p[0];
     var t = x + g + 0.5;
     for (var i = 1; i < p.length; i++) {
         a += p[i] / (x + i);
     }
- 
+
     return Math.sqrt(2 * Math.PI) * Math.pow(t, x + 0.5) * Math.exp(-t) * a;
 }`);
   expect(code.language).toEqual("Javascript");
@@ -266,9 +266,9 @@ test("fivenum", () => {
   test = [ 0.14082834,  0.09748790,  1.73131507,  0.87636009, -1.95059594,
            0.73438555, -0.03035726,  1.46675970, -0.74621349, -0.72588772,
            0.63905160,  0.61501527, -0.98983780, -1.00447874, -0.62759469,
-           0.66206163,  1.04312009, -0.10305385,  0.75775634,  0.32566578];
+           0.66206163,  1.04312009, -0.10305385,  0.75775634, 0.32566578];
   console.log( test.fiveNums() );`);
-  expect(code.language).toEqual("Javascript");
+  expect(code.language).toEqual("Typescript");
 });
 
 test("arrow function", () => {
@@ -295,5 +295,26 @@ test("Svelte", () => {
 			window.removeEventListener('sveltekit:navigation-end', onNavigationEnd)
 		}
 	})`);
+  expect(code.language).toEqual("Javascript");
+});
+
+test("ESM import/export", () => {
+  const code = detectLang(`import React from "react";
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [count, setCount] = useState(0);
+  return <div>{count}</div>;
+}`);
+  expect(code.language).toEqual("Javascript");
+});
+
+test("require + module.exports", () => {
+  const code = detectLang(`const fs = require("fs");
+const path = require("path");
+
+module.exports = function readFile(filepath) {
+  return fs.readFileSync(path.resolve(filepath), "utf-8");
+};`);
   expect(code.language).toEqual("Javascript");
 });

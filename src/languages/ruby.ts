@@ -33,5 +33,7 @@ export const Ruby: LanguagePattern[] = [
   // Scope operator
   { pattern: /[A-Z]\w*::[A-Z]\w*/, type: "macro" },
   // Plain class declaration (no inheritance)
-  { pattern: /^class\s+[A-Z]\w+\s*$/, type: "keyword" },
+  { pattern: /^\s*class\s+[A-Z]\w+\s*$/, type: "keyword" },
+  // end keyword (Ruby block closer)
+  { pattern: /^\s*end\s*$/, type: "keyword" },
 ];

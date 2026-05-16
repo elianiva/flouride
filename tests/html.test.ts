@@ -56,10 +56,10 @@ test("quine - html+css", () => {
     <title>HTML/CSS Quine</title>
     <style type="text/css">
     * { font: 10pt monospace; }
-   
+
     head, style { display: block; }
     style { white-space: pre; }
-   
+
     style:before {
       content:
         "<""!DOCTYPE html>"
