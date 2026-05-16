@@ -109,10 +109,10 @@ $ npm run test
 
 ### Before creating a PR
 
-Please run ESLint and Prettier with these commands so you're good on the CI process.
+Please run `vp check` to format, lint, and type-check your code before submitting.
 
 ```sh
-$ npm run lint
+$ npx vp check
 ```
 
 And you're set!

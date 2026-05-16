@@ -14,17 +14,17 @@ export const Go: LanguagePattern[] = [
   // variable initialisation
   { pattern: /\w+\s*:=\s*.+[^;\n]/, type: "keyword.variable" },
   // if/else if
-  { pattern: /(}\s*else\s*)?if[^()]+{/, type: "keyword.control" },
+  { pattern: /(}\s*else\s*)?if\s+.+{/, type: "keyword.control" },
   // var/const declaration
-  { pattern: /(var|const)\s+\w+\s+[\w*]+(\n|\s*=|$)/, type: "keyword.variable" },
+  { pattern: /(var|const)\s+\w+(\s+[\w*[\]]+)?(\n|\s*=|$)/, type: "keyword.variable" },
   // public access on package
   { pattern: /[a-z]+\.[A-Z]\w*/, type: "macro" },
   // nil keyword
-  { pattern: /nil/, type: "keyword" },
+  { pattern: /\bnil\b/, type: "keyword" },
   // Single quote multicharacter string
   { pattern: /'.{2,}'/, type: "not" },
   // Avoiding C# confusion
   { pattern: /Console\.(WriteLine|Write)(\s*)?\(/, type: "not" },
   { pattern: /using\sSystem(\..*)?(;)?/, type: "not" },
-  { pattern: /(public|private|protected|internal)\s/, type: "not" }
+  { pattern: /(public|private|protected|internal)\s/, type: "not" },
 ];

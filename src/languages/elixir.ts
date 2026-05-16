@@ -10,12 +10,16 @@ export const Elixir: LanguagePattern[] = [
   // Anonymous func
   { pattern: /fn\s+[A-Za-z0-9_:<>()]+\s+->\s+.+(end)?$/, type: "keyword.function" },
   { pattern: /^\s*(def|defp)\s+.+\s+do$/, type: "keyword.function" },
-  { pattern: /^\s*(if|unless|cond|case|try|defimpl|defprotocol)\s+.+\s+do$/, type: "keyword.control" },
+  {
+    pattern: /^\s*(if|unless|cond|case|try|defimpl|defprotocol)\s+.+\s+do$/,
+    type: "keyword.control",
+  },
   { pattern: /^\s*defstruct\s+/, type: "keyword" },
   // Spec
   { pattern: /^\s*@spec\s+.+::.+/, type: "macro" },
   // Lists
   { pattern: /\{:.+,.+\}/, type: "constant.array" },
-  // Maps
-  { pattern: /%\{(.+(=>|:).+(,)?){1,}\}/, type: "constant.dictionary" }
+  // Avoid JS confusion
+  { pattern: /\b(let|const|var)\s+/, type: "not" },
+  { pattern: /\bfunction\s+/, type: "not" },
 ];

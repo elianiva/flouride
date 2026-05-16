@@ -2,7 +2,7 @@ import type { LanguagePattern } from "../types";
 
 export const Ruby: LanguagePattern[] = [
   // require/include
-  { pattern: /(require|include)\s+'\w+(\.rb)?'/, type: "meta.import", nearTop: true },
+  { pattern: /^\s*(require|include)\s+['"][\w/-]+['"]/, type: "meta.import", nearTop: true },
   // Function definition
   { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, type: "keyword.function" },
   // Instance variables
@@ -28,8 +28,10 @@ export const Ruby: LanguagePattern[] = [
   { pattern: /do\s*[|]\w+(,\s*\w+)*[|]/, type: "keyword.control" },
   // for loop
   { pattern: /for (\w+|\(?\w+,\s*\w+\)?) in (.+)/, type: "keyword.control" },
-  // nil keyword
-  { pattern: /nil/, type: "constant.null" },
+  // nil/true/false keywords
+  { pattern: /\bnil\b/, type: "constant.null" },
   // Scope operator
-  { pattern: /[A-Z]\w*::[A-Z]\w*/, type: "macro" }
+  { pattern: /[A-Z]\w*::[A-Z]\w*/, type: "macro" },
+  // Plain class declaration (no inheritance)
+  { pattern: /^class\s+[A-Z]\w+\s*$/, type: "keyword" },
 ];

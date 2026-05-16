@@ -53,7 +53,7 @@ const languages: Record<string, LanguagePattern[]> = {
   Rust,
   SQL,
   YAML,
-  Typescript
+  Typescript,
 };
 
 /**
@@ -70,7 +70,7 @@ const languages: Record<string, LanguagePattern[]> = {
  */
 function flourite(
   snippet: string,
-  options: Options = { heuristic: true, shiki: false, noUnknown: false }
+  options: Options = { heuristic: true, shiki: false, noUnknown: false },
 ): DetectedLanguage {
   let linesOfCode = snippet
     .replace(/\r\n?/g, "\n")
@@ -94,7 +94,7 @@ function flourite(
       return {
         language: options.shiki ? convert(language) : language,
         statistics: {},
-        linesOfCode: linesOfCode.length
+        linesOfCode: linesOfCode.length,
       };
     }
 
@@ -102,7 +102,7 @@ function flourite(
       return {
         language: options.shiki ? "bash" : "Bash",
         statistics: {},
-        linesOfCode: linesOfCode.length
+        linesOfCode: linesOfCode.length,
       };
     }
   }
@@ -123,7 +123,7 @@ function flourite(
       if (!nearTop(j, linesOfCode)) {
         points += getPoints(
           linesOfCode[j],
-          checkers.filter((checker) => !checker.nearTop)
+          checkers.filter((checker) => !checker.nearTop),
         );
       } else {
         points += getPoints(linesOfCode[j], checkers);
@@ -137,7 +137,10 @@ function flourite(
     results.push({ language: "Unknown", points: 1 });
   }
 
-  const bestResult = results.reduce((a, b) => a.points >= b.points ? a : b, { points: 0, language: "" });
+  const bestResult = results.reduce((a, b) => (a.points >= b.points ? a : b), {
+    points: 0,
+    language: "",
+  });
   const statistics: Record<string, number> = {};
 
   for (let i = 0; i < results.length; i++) {
@@ -147,7 +150,7 @@ function flourite(
   return {
     language: options.shiki ? convert(bestResult.language) : bestResult.language,
     statistics,
-    linesOfCode: linesOfCode.length
+    linesOfCode: linesOfCode.length,
   };
 }
 

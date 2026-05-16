@@ -1,10 +1,9 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("hello world", () => {
-  const code = detectLang("console.log(\"Hello world!\" as string);");
-  assert.equal(code.language, "Typescript");
+  const code = detectLang('console.log("Hello world!" as string);');
+  expect(code.language).toEqual("Typescript");
 });
 
 test("fizz buzz", () => {
@@ -19,7 +18,7 @@ test("fizz buzz", () => {
         else if (item % 5 === 0) console.log('Buzz' as string)
     })
   `);
-  assert.equal(code.language, "Typescript");
+  expect(code.language).toEqual("Typescript");
 });
 
 test("quick sort", () => {
@@ -66,7 +65,7 @@ test('test code', (): void => {
     expect(arr).toStrictEqual(result)
 })
 `);
-  assert.equal(code.language, "Typescript");
+  expect(code.language).toEqual("Typescript");
 });
 
 test("http server", () => {
@@ -94,7 +93,7 @@ http.get('http://rosettacode.org', (resp: any): void => {
 });
   `);
 
-  assert.equal(code.language, "Typescript");
+  expect(code.language).toEqual("Typescript");
 });
 
 test("longest palindrome", () => {
@@ -119,7 +118,6 @@ function longestPalindrome(s: string): string {
     let longestSubstring: string = s[0]
     let curSubString: string = s[0] + s[1]
 
-
     while (startPos !== s.length - 1) {
         if (startCharSubstring === s[nextPos]) {
             if (isPalindrome(curSubString) && curSubString.length > longestSubstring.length) {
@@ -141,7 +139,7 @@ function longestPalindrome(s: string): string {
     return longestSubstring
 }
   `);
-  assert.equal(code.language, "Typescript");
+  expect(code.language).toEqual("Typescript");
 });
 
 test("vue 3 component code", () => {
@@ -176,7 +174,5 @@ const changeTitle = (): void => {
     }
 }
   `);
-  assert.equal(code.language, "Typescript");
+  expect(code.language).toEqual("Typescript");
 });
-
-test.run();

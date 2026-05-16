@@ -1,35 +1,34 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("converted", () => {
   const node = "#!/usr/bin/env node";
   const nodelang = detectLang(node);
-  assert.is(nodelang.language, "Javascript");
+  expect(nodelang.language).toBe("Javascript");
 
   const python = "#!/usr/bin/env python3";
   const pythonlang = detectLang(python);
-  assert.is(pythonlang.language, "Python");
+  expect(pythonlang.language).toBe("Python");
 
   const php = "#!/usr/bin/env php";
   const phplang = detectLang(php);
-  assert.is(phplang.language, "PHP");
+  expect(phplang.language).toBe("PHP");
 });
 
 test("random", () => {
   const lang = detectLang("#!/usr/bin/env ruby", { shiki: false });
-  assert.is(lang.language, "Ruby");
+  expect(lang.language).toBe("Ruby");
   const shiki = detectLang("#!/usr/bin/env ruby", { shiki: true });
-  assert.is(shiki.language, "ruby");
+  expect(shiki.language).toBe("ruby");
 });
 
 test("bash", () => {
   const shebang = "#!/bin/bash";
   const lang = detectLang(shebang);
-  assert.is(lang.language, "Bash");
+  expect(lang.language).toBe("Bash");
 
   const shiki = detectLang(shebang, { shiki: true });
-  assert.is(shiki.language, "bash");
+  expect(shiki.language).toBe("bash");
 });
 
 test("real world scenario", () => {
@@ -63,7 +62,5 @@ end
 
 run(\`git clone --depth=1 $repo $directory\`)
 run(\`rm -rf $directory/.git\`)`);
-  assert.is(code.language, "Julia");
+  expect(code.language).toBe("Julia");
 });
-
-test.run();

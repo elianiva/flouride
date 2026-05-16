@@ -8,9 +8,11 @@ export const Julia: LanguagePattern[] = [
   { pattern: /from\s.+import\s.+/, type: "not" },
   // Stdout / print line
   { pattern: /println\(.*\)/, type: "keyword.print" },
-  { pattern: /(.*)!\(.*\)/, type: "macro" },
+  { pattern: /\w+!\([^)]*\)/, type: "macro" },
   // for x in / for x =
   { pattern: /for\s(\w+)\s(in|=)\s/, type: "keyword.control" },
+  // return statement
+  { pattern: /return\s+(true|false|\w+)/, type: "keyword.control" },
   // It's not Julia if the function ends with {
   { pattern: /function\s\w+\(.*\)\s\{/, type: "not" },
   // It's not Julia either if the while loop has a brackets
@@ -24,7 +26,7 @@ export const Julia: LanguagePattern[] = [
   { pattern: /[0-9]+im/, type: "keyword" },
   // Avoiding Rust confusion
   { pattern: /\{:\?\}/, type: "not" },
-  { pattern: /fn\smain()/, type: "not" },
+  { pattern: /fn\s+main\(\)/, type: "not" },
   // Avoiding Ruby confusion
   { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, type: "not" },
   { pattern: /puts\s+("|').+("|')/, type: "not" },
@@ -34,5 +36,5 @@ export const Julia: LanguagePattern[] = [
   { pattern: /\bmodule\(.*\)/, type: "not" },
   // Avoiding Kotlin confusion
   { pattern: /fun main\((.*)?\) {/, type: "not" },
-  { pattern: /fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+){/, type: "not" }
+  { pattern: /fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+){/, type: "not" },
 ];

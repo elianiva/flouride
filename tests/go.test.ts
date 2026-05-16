@@ -1,10 +1,9 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("hello world", () => {
-  const code = detectLang("fmt.Println(\"Hello world\")");
-  assert.equal(code.language, "Go");
+  const code = detectLang('fmt.Println("Hello world")');
+  expect(code.language).toEqual("Go");
 });
 
 test("fizz buzz", () => {
@@ -38,7 +37,7 @@ test("fizz buzz", () => {
 			fmt.Println(i)
 		}
 	}`);
-  assert.equal(code.language, "Go");
+  expect(code.language).toEqual("Go");
 });
 
 test("quick sort", () => {
@@ -135,7 +134,7 @@ test("quick sort", () => {
 			}
 			pex(0, len(a)-1)
 	}`);
-  assert.equal(code.language, "Go");
+  expect(code.language).toEqual("Go");
 });
 
 test("http server", () => {
@@ -155,7 +154,7 @@ test("http server", () => {
 			}
 			io.Copy(os.Stdout, r.Body)
 	}`);
-  assert.equal(code.language, "Go");
+  expect(code.language).toEqual("Go");
 });
 
 test("bubble sort", () => {
@@ -188,7 +187,7 @@ test("bubble sort", () => {
 					}
 			}
 	}`);
-  assert.equal(code.language, "Go");
+  expect(code.language).toEqual("Go");
 });
 
 test("heap sort", () => {
@@ -230,7 +229,7 @@ test("heap sort", () => {
 			heapSort(sort.IntSlice(a))
 			fmt.Println("after: ", a)
 	}`);
-  assert.equal(code.language, "Go");
+  expect(code.language).toEqual("Go");
 });
 
 test("floyd warshall algorithm", () => {
@@ -347,7 +346,7 @@ test("floyd warshall algorithm", () => {
 			}
 		}
 	}`);
-  assert.equal(code.language, "Go");
+  expect(code.language).toEqual("Go");
 });
 
 test("ludic numbers", () => {
@@ -432,7 +431,7 @@ test("ludic numbers", () => {
 		}
 		fmt.Println()
 	}`);
-  assert.equal(code.language, "Go");
+  expect(code.language).toEqual("Go");
 });
 
 test("gamma function", () => {
@@ -463,7 +462,7 @@ test("gamma function", () => {
 					1.5056327351493116e-7/(z+7)
 			return math.Sqrt2 * math.SqrtPi * math.Pow(t, z-.5) * math.Exp(-t) * x
 	}`);
-  assert.equal(code.language, "Go");
+  expect(code.language).toEqual("Go");
 });
 
 test("fivenum", () => {
@@ -504,7 +503,7 @@ test("fivenum", () => {
 			fmt.Println(fivenum(x2))
 			fmt.Println(fivenum(x3))
 	}`);
-  assert.equal(code.language, "Go");
+  expect(code.language).toEqual("Go");
 });
 
 test("y combinator", () => {
@@ -549,7 +548,5 @@ test("y combinator", () => {
 			return f(x-1)+f(x-2)
 		}
 	}`);
-  assert.equal(code.language, "Go");
+  expect(code.language).toEqual("Go");
 });
-
-test.run();

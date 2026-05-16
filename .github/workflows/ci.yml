@@ -2,37 +2,42 @@ name: CI
 
 on:
   push:
-    branches: ['*']
+    branches: ["*"]
   pull_request:
-    branches: ['*']
+    branches: ["*"]
 
 jobs:
   ci:
     name: CI
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [ 16, 18, 20, 22 ]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: ${{ matrix.node }}
+          node-version-file: .node-version
+          cache: pnpm
 
-      - name: Installing dependencies
-        run: npm install
+      - name: Install dependencies
+        run: pnpm install
 
-      - name: ESLint check
-        run: npx eslint --ignore-path .gitignore .
+      - name: Check formatting, linting, types
+        run: pnpm check
 
       - name: Test & coverage
-        run: npm run test
+        run: pnpm test
 
-      - name: Build with Rollup
-        run: npm run build
+      - name: Build
+        run: pnpm build
 
       - name: Send coverage report to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/coverage-final.json
+          fail_ci_if_error: false

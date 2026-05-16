@@ -57,8 +57,8 @@ export function getPoints(lineOfCode: string, checkers: LanguagePattern[]): numb
  * @returns {Boolean}
  */
 export function nearTop(index: number, linesOfCode: string[]): boolean {
-  if (linesOfCode.length <= 10) {
+  if (linesOfCode.length <= 5) {
     return true;
   }
-  return index < linesOfCode.length / 10;
+  return index < Math.max(5, linesOfCode.length / 10);
 }

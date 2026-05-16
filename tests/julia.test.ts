@@ -1,10 +1,9 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("hello world", () => {
-  const code = detectLang("println(\"Hello world!\")");
-  assert.equal(code.language, "Julia");
+  const code = detectLang('println("Hello world!")');
+  expect(code.language).toEqual("Julia");
 });
 
 test("fizz buzz", () => {
@@ -19,7 +18,7 @@ test("fizz buzz", () => {
         println(i)
     end
   end`);
-  assert.equal(code.language, "Julia");
+  expect(code.language).toEqual("Julia");
 });
 
 test("fibonacci sequence", () => {
@@ -28,7 +27,7 @@ test("fibonacci sequence", () => {
     for i = 1:n x,y = (y, x+y) end
     x
   end`);
-  assert.equal(code.language, "Julia");
+  expect(code.language).toEqual("Julia");
 });
 
 test("http server", () => {
@@ -37,7 +36,7 @@ test("http server", () => {
       "Goodbye, World!"
   end
   run(server, 8080)`);
-  assert.equal(code.language, "Julia");
+  expect(code.language).toEqual("Julia");
 });
 
 test("palindrome detection", () => {
@@ -51,7 +50,7 @@ test("palindrome detection", () => {
     end
     return false
   end`);
-  assert.equal(code.language, "Julia");
+  expect(code.language).toEqual("Julia");
 });
 
 test("quick sort", () => {
@@ -77,7 +76,7 @@ test("quick sort", () => {
     end
     return A
   end`);
-  assert.equal(code.language, "Julia");
+  expect(code.language).toEqual("Julia");
 });
 
 test("bubble sort", () => {
@@ -92,7 +91,7 @@ test("bubble sort", () => {
 
   v = rand(-10:10, 10)
   println("# unordered: $v\n -> ordered: ", bubblesort!(v))`);
-  assert.equal(code.language, "Julia");
+  expect(code.language).toEqual("Julia");
 });
 
 test("heap sort", () => {
@@ -138,7 +137,7 @@ test("heap sort", () => {
   a = shuffle(collect(1:12))
   println("Unsorted: $a")
   println("Heap sorted: ", heapsort!(a))`);
-  assert.equal(code.language, "Julia");
+  expect(code.language).toEqual("Julia");
 });
 
 test("tree sort on a linked list", () => {
@@ -185,7 +184,7 @@ test("tree sort on a linked list", () => {
   end
 
   testtreesort(rand(1:99, 12))`);
-  assert.equal(code.language, "Julia");
+  expect(code.language).toEqual("Julia");
 });
 
 test("ludic numbers", () => {
@@ -251,11 +250,12 @@ test("ludic numbers", () => {
     println("    ", i, ", ", j, ", ", k)
   end
   `);
-  assert.equal(code.language, "Julia");
+  expect(code.language).toEqual("Julia");
 });
 
 test("floyd warshall algorithm", () => {
-  const code = detectLang(`# Floyd-Warshall algorithm: https://rosettacode.org/wiki/Floyd-Warshall_algorithm
+  const code =
+    detectLang(`# Floyd-Warshall algorithm: https://rosettacode.org/wiki/Floyd-Warshall_algorithm
   # v0.6
    
   function floydwarshall(weights::Matrix, nvert::Int)
@@ -293,11 +293,12 @@ test("floyd warshall algorithm", () => {
   end
    
   floydwarshall([1 3 -2; 2 1 4; 2 3 3; 3 4 2; 4 2 -1], 4)`);
-  assert.equal(code.language, "Julia");
+  expect(code.language).toEqual("Julia");
 });
 
 test("fivenum", () => {
-  const code = detectLang(`function mediansorted(x::AbstractVector{T}, i::Integer, l::Integer)::T where T
+  const code =
+    detectLang(`function mediansorted(x::AbstractVector{T}, i::Integer, l::Integer)::T where T
   len = l - i + 1
   len > zero(len) || throw(ArgumentError("Array slice cannot be empty."))
   mid = i + len ÷ 2
@@ -325,7 +326,5 @@ for v in ([15.0, 6.0, 42.0, 41.0, 7.0, 36.0, 49.0, 40.0, 39.0, 47.0, 43.0],
          0.75775634,  0.32566578])
   println("# ", v, "\n -> ", fivenum(v))
 end`);
-  assert.equal(code.language, "Julia");
+  expect(code.language).toEqual("Julia");
 });
-
-test.run();

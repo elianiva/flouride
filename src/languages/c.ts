@@ -2,21 +2,24 @@ import type { LanguagePattern } from "../types";
 
 export const C: LanguagePattern[] = [
   // Primitive variable declaration.
-  { pattern: /(char|long|int|float|double)\s+\w+\s*=?/, type: "constant.type" },
+  {
+    pattern: /\b(char|long|int|float|double|short|unsigned|signed|size_t)\s+\w+\s*=?/,
+    type: "constant.type",
+  },
   // malloc function call
   { pattern: /malloc\(.+\)/, type: "keyword.function" },
   // #include <whatever.h>
   { pattern: /#include (<|")\w+\.h(>|")/, type: "meta.import", nearTop: true },
   // pointer
   { pattern: /(\w+)\s*\*\s*\w+/, type: "keyword" },
-  // Variable declaration and/or initialisation.
-  { pattern: /(\w+)\s+\w+(;|\s*=)/, type: "macro" },
+  // Variable declaration and/or initialisation (C style, no type but has assignment)
+  { pattern: /\b(\w+)\s+\w+(;|\s*=)/, type: "macro" },
   // Array declaration.
   { pattern: /(\w+)\s+\w+\[.+\]/, type: "keyword.other" },
   // #define macro
   { pattern: /#define\s+.+/, type: "macro" },
   // NULL constant
-  { pattern: /NULL/, type: "constant.null" },
+  { pattern: /\bNULL\b/, type: "constant.null" },
   // void keyword
   { pattern: /void/g, type: "keyword.other" },
   // (else )if statement
@@ -32,7 +35,7 @@ export const C: LanguagePattern[] = [
   // Single quote multicharacter string
   { pattern: /'.{2,}'/, type: "not" },
   // JS variable declaration
-  { pattern: /var\s+\w+\s*=?/, type: "not" },
+  { pattern: /(var|const|let)\s+\w+\s*=?/, type: "not" },
   // Avoiding Ruby confusion
   { pattern: /def\s+\w+\s*(\(.+\))?\s*\n/, type: "not" },
   { pattern: /puts\s+("|').+("|')/, type: "not" },
@@ -44,10 +47,10 @@ export const C: LanguagePattern[] = [
   {
     pattern:
       /(new|this\s)?(List|IEnumerable)<(sbyte|byte|short|ushort|int|uint|long|ulong|float|double|decimal|bool|char|string)>/,
-    type: "not"
+    type: "not",
   },
   // Avoiding Lua confusion
   { pattern: /local\s(function|\w+)?/, type: "not" },
   // Avoiding Dart confusion
-  { pattern: /^(void\s)?main\(\)\s(async\s)?{/, type: "not" }
+  { pattern: /^(void\s)?main\(\)\s(async\s)?{/, type: "not" },
 ];

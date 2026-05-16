@@ -19,6 +19,8 @@ export const Java: LanguagePattern[] = [
   { pattern: /final\s*\w+/, type: "keyword.other" },
   // getter & setter
   { pattern: /\w+\.(get|set)\(.+\)/, type: "keyword.other" },
+  // Method chaining .method().method()
+  { pattern: /\.\w+\(\)/, type: "keyword.other" },
   // new Keyword (Java)
   { pattern: /new [A-Z]\w*\s*\(.+\)/, type: "keyword.other" },
   // C style variable declaration.
@@ -26,13 +28,13 @@ export const Java: LanguagePattern[] = [
   // extends/implements keywords
   { pattern: /(extends|implements)/, type: "meta.module", nearTop: true },
   // null keyword
-  { pattern: /null/g, type: "keyword.other" },
+  { pattern: /\bnull\b/g, type: "keyword.other" },
   // (else )if statement
   { pattern: /(else )?if\s*\(.+\)/, type: "keyword.control" },
   // while loop
   { pattern: /while\s+\(.+\)/, type: "keyword.control" },
   // void keyword
-  { pattern: /void/, type: "keyword.other" },
+  { pattern: /\bvoid\b/, type: "keyword.other" },
   // const
   { pattern: /const\s*\w+/, type: "not" },
   // pointer
@@ -54,5 +56,5 @@ export const Java: LanguagePattern[] = [
   { pattern: /(inline(\s+))?fun(\s+)([A-Za-z0-9_])(\s+)?\((.*)\)(\s+)({|=)/, type: "not" },
   { pattern: /(const)?(\s+)?val(\s+)(.*)(:(\s)(.*)(\?)?)?(\s+)=(\s+)/, type: "not" },
   // Avoiding Dart confusion
-  { pattern: /^(void\s)?main\(\)\s{/, type: "not" }
+  { pattern: /^(void\s)?main\(\)\s{/, type: "not" },
 ];

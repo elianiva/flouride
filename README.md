@@ -40,7 +40,7 @@ or via a CDN (unpkg or jsdelivr)
 ## Usage
 
 ```js
-import flourite from 'flourite';
+import flourite from "flourite";
 
 const code = flourite('cout << "Hello world" << endl;');
 
@@ -80,7 +80,7 @@ Or if you want to integrate it with [Shiki](https://github.com/shikijs/shiki), y
 ```js
 flourite('Console.WriteLine("Hello world!");', { shiki: true }).language;
 // => csharp
-flourite('fn partition<T,F>(v: &mut [T], f: &F) -> usize ', { shiki: true }).language;
+flourite("fn partition<T,F>(v: &mut [T], f: &F) -> usize ", { shiki: true }).language;
 // => rust
 ```
 
@@ -93,14 +93,14 @@ const code = flourite("SELECT 'Hello world!' text FROM dual;", { noUnknown: true
 ### With Typescript
 
 ```typescript
-import flourite from 'flourite';
-import type { Options } from 'flourite';
+import flourite from "flourite";
+import type { Options } from "flourite";
 
 const flouriteOptions: Options = {
   heuristic: true,
 };
 
-const code = flourite('print!({:?}, &v);', flouriteOptions);
+const code = flourite("print!({:?}, &v);", flouriteOptions);
 ```
 
 ### Available Options
@@ -129,7 +129,7 @@ Have fun!
 
 - Use the Node.js version as defined on the `.nvmrc` file.
 - Run `npm run test:tdd` to initiate a test driven development environment.
-- Run `npm run lint` and `npm run format` before commit a change.
+- Run `npx vp check` to format, lint, and type-check before commit a change.
 
 For more details and explanation on how things work, see [CONTRIBUTING](./CONTRIBUTING.md)
 

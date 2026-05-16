@@ -1,5 +1,4 @@
-import { test } from "uvu";
-import * as assert from "uvu/assert";
+import { test, expect } from "vite-plus/test";
 import detectLang from "../src/index";
 
 test("hello world", () => {
@@ -7,7 +6,7 @@ test("hello world", () => {
     var bye = 'Hello world!';
     print("$bye");
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("async", () => {
@@ -15,14 +14,14 @@ test("async", () => {
   checkVersion();
   print('In main: version is \${await lookUpVersion()}');
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("async loop", () => {
   const code = detectLang(`await for (final request in requestServer) {
   handleRequest(request);
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("typedef", () => {
@@ -33,7 +32,7 @@ int sort(int a, int b) => a - b;
 void main() {
   assert(sort is Compare<int>); // True!
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("happy numbers", () => {
@@ -72,7 +71,7 @@ test("happy numbers", () => {
     i++;
   }
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("fizz buzz", () => {
@@ -86,7 +85,7 @@ test("fizz buzz", () => {
     print(out.length > 0 ? out.join("") : i);
   }
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("guess the number", () => {
@@ -99,7 +98,7 @@ main() {
   do { stdout.write(" Your guess : "); } while (n != stdin.readLineSync());
   print("\nWell guessed!");
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("bubble sort", () => {
@@ -121,7 +120,7 @@ test("bubble sort", () => {
 
   return retList;
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("merge sort", () => {
@@ -241,7 +240,7 @@ class MergeSortInDart {
     sortedList = sortThisList;
   }
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("heap sort", () => {
@@ -267,8 +266,6 @@ while (end > 0) {
   end--;
 }
 }
-
-
 
 void heapify(List a, int count) {
 // start is assigned the index in 'a' of the last parent node
@@ -314,7 +311,7 @@ heapSort(arr);
 print("After sort");
 arr.forEach((var i)=>print("$i"));
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("quick sort", () => {
@@ -357,7 +354,7 @@ void main() {
   print("After sort");
   arr.forEach((var i)=>print("$i"));
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("regular expression", () => {
@@ -371,7 +368,7 @@ void main(){
   print(hello);
   print(hellomodified);
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("pascal triangle", () => {
@@ -415,7 +412,7 @@ void main() {
   pascal(3);
   pascal(6);
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("perfect numbers", () => {
@@ -442,11 +439,12 @@ bool isPerfect(int n){
     // We return the test if n is equal to sumOfDivisors
     return n == sumOfDivisors;
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("http server", () => {
-  const code = detectLang(`// Copyright (c) 2013-2014, the Dart project authors.  Please see the AUTHORS file
+  const code =
+    detectLang(`// Copyright (c) 2013-2014, the Dart project authors.  Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
@@ -489,11 +487,12 @@ main() async {
     ..serve(postUrl, method: 'GET').listen(servePost)
     ..defaultStream.listen(serveNotFound);
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("some api", () => {
-  const code = detectLang(`// Copyright (c) 2019, the Dart project authors. Please see the AUTHORS file
+  const code =
+    detectLang(`// Copyright (c) 2019, the Dart project authors. Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
@@ -529,11 +528,12 @@ class Person {
 
   const Person(this.name, this.dayOfBirth);
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
 
 test("finding a type of a filesystem object", () => {
-  const code = detectLang(`// Copyright (c) 2013, the Dart project authors.  Please see the AUTHORS file
+  const code =
+    detectLang(`// Copyright (c) 2013, the Dart project authors.  Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
@@ -569,7 +569,5 @@ main() async {
     print('$label: \${entity.path}');
   }
 }`);
-  assert.equal(code.language, "Dart");
+  expect(code.language).toEqual("Dart");
 });
-
-test.run();

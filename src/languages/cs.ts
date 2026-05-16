@@ -22,23 +22,26 @@ export const CS: LanguagePattern[] = [
   {
     pattern:
       /(const\s)?(sbyte|byte|short|ushort|int|uint|long|ulong|float|double|decimal|bool|char|string)(\[\])?\s(.*)\s=\s(.*);/,
-    type: "constant.type"
+    type: "constant.type",
   },
   // Lists
   {
     pattern:
       /(new|this\s)?(List|IEnumerable)<(sbyte|byte|short|ushort|int|uint|long|ulong|float|double|decimal|bool|char|string)>/,
-    type: "constant.dictionary"
+    type: "constant.dictionary",
   },
   // Macro
   { pattern: /#define\s(.*)/, type: "macro" },
   // Plus point if you're doing PascalCase
-  { pattern: /\s([A-Z]([A-Z0-9]*[a-z][a-z0-9]*[A-Z]|[a-z0-9]*[A-Z][A-Z0-9]*[a-z])[A-Za-z0-9]*)\s=/, type: "macro" },
+  {
+    pattern: /\s([A-Z]([A-Z0-9]*[a-z][a-z0-9]*[A-Z]|[a-z0-9]*[A-Z][A-Z0-9]*[a-z])[A-Za-z0-9]*)\s=/,
+    type: "macro",
+  },
   // Avoiding Java confusion
   { pattern: /(extends|throws|@Attribute)/, type: "not" },
   { pattern: /System\.(in|out)\.\w+/, type: "not" },
   // Avoiding Ruby confusion
   { pattern: /\bmodule\s\S/, type: "not" },
   // Avoiding Dart confusion
-  { pattern: /^\s*import\s("|')dart:\w+("|')/, type: "not" }
+  { pattern: /^\s*import\s("|')dart:\w+("|')/, type: "not" },
 ];
